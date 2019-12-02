@@ -1,6 +1,7 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.domain.entity.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -20,5 +21,14 @@ public interface UserMapper {
 
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile}")
     User findUserByMobile(String mobile);
+
+    @Select("SELECT * FROM t_user WHERE id = #{id}")
+    User findUserById(int id);
+
+    @Delete("DELETE FROM t_user WHERE id = #{id} ")
+    void deleteById(int id)throws SQLException;
+
+    @Delete("DELETE FROM t_user WHERE mobile = #{mobile} ")
+    void deleteByMobile(String mobile)throws SQLException;
 
 }

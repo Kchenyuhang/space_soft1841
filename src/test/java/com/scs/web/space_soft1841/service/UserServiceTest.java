@@ -24,4 +24,10 @@ class UserServiceTest {
         System.out.println(result);
 //        assertEquals(1,result.getCode());
     }
+
+    @Test
+    void deleteUser() {
+        Result result = userService.deleteUser("13988882222");
+        System.out.println(result);
+    }
 }

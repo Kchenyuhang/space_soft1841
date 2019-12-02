@@ -3,10 +3,7 @@ package com.scs.web.space_soft1841.controller;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.service.UserService;
 import com.scs.web.space_soft1841.until.Result;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -25,6 +22,18 @@ public class UserController {
     @PostMapping(value = "/sign-up")
     public Result userSignUp(@RequestBody User user){
         Result result = userService.signUp(user);
+        return result;
+    }
+
+    @DeleteMapping(value = "/")
+    public Result deleteUser(@RequestParam String mobile){
+        Result result = userService.deleteUser(mobile);
+        return result;
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public Result deleteUserById(@PathVariable int id){
+        Result result = userService.deleteUserById(id);
         return result;
     }
 }

@@ -18,7 +18,7 @@ class UserMapperTest {
     @Test
     void insert() throws SQLException {
         User user = new User();
-        user.setMobile("13988887777");
+        user.setMobile("13911112222");
         user.setPassword("111");
         userMapper.insert(user);
     }
@@ -27,5 +27,10 @@ class UserMapperTest {
     void findUserByMobile() {
         User user = userMapper.findUserByMobile("13988887777");
         System.out.println(user);
+    }
+
+    @Test
+    void deleteByMobile()throws SQLException{
+        userMapper.deleteByMobile("13988887777");
     }
 }

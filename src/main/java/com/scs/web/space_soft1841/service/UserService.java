@@ -11,4 +11,8 @@ import com.scs.web.space_soft1841.until.Result;
  **/
 public interface UserService {
     Result signUp(User user);
+
+    Result deleteUser(String mobile);
+
+    Result deleteUserById(int id);
 }

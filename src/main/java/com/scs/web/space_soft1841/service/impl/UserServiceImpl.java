@@ -39,4 +39,34 @@ public class UserServiceImpl implements UserService {
             return Result.success();
         }
     }
+
+    @Override
+    public Result deleteUser(String mobile) {
+        User user = userMapper.findUserByMobile(mobile);
+        if (user != null) {
+            try {
+                userMapper.deleteByMobile(mobile);
+            } catch (SQLException e) {
+                logger.error("根据手机号删除用户出现异常");
+                return Result.failure(ResultCode.USER_DELETE_FAILURE_);
+            }
+            return Result.success();
+        }
+        return Result.failure(ResultCode.USER_NOT_EXIST);
+    }
+
+    @Override
+    public Result deleteUserById(int id) {
+        User user = userMapper.findUserById(id);
+        if (user != null) {
+            try {
+                userMapper.deleteById(id);
+            } catch (SQLException e) {
+                logger.error("根据id删除用户出现异常");
+                return Result.failure(ResultCode.USER_DELETE_FAILURE_);
+            }
+            return Result.success();
+        }
+        return Result.failure(ResultCode.USER_NOT_EXIST);
+    }
 }

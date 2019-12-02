@@ -29,6 +29,7 @@ public enum ResultCode {
     USER_NOT_EXIST(20006, "用户不存在"),
     USER_HAS_EXISTED(20007, "用户已存在"),
     USER_SIGN_UP_FAILURE_(20008, "用户注册失败"),
+    USER_DELETE_FAILURE_(20009, "用户删除失败"),
 
     /* 业务错误：30001-39999 */
     SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "某业务出现问题"),
