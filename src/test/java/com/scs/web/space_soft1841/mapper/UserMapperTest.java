@@ -1,7 +1,7 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
-import com.scs.web.space_soft1841.controller.Md5;
+import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;

@@ -60,4 +60,12 @@ public interface UserService {
      */
     Result confirmRelationByMobile(String mobile1,String mobile2);
 
+    /**
+     * 单方面的删除好友关系
+     * @param mobile1
+     * @param mobile2
+     * @return
+     */
+    Result deleteRelationByMobile(String mobile1,String mobile2);
+
 }

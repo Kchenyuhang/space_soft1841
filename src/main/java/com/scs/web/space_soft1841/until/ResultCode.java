@@ -33,6 +33,7 @@ public enum ResultCode {
     USER_SELECT_FAILURE_(20010, "用户查询失败"),
     USER_UPDATE_FAILURE_(20011, "用户信息更新失败"),
     USER_CONFIRM_FAILURE_(20012, "用户关系查询失败"),
+    USER_DELETERELATION_FAILURE_(20013, "删除好友失败"),
 
 
 

@@ -104,11 +104,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result confirmRelationByMobile(String mobile1, String mobile2) {
-        if (userMapper.confirmRelationByMobile(mobile1,mobile2) ==1){
+        if (userMapper.confirmRelationByMobile(mobile1,mobile2) !=0){
             return  Result.success();
         }else {
             logger.error("查询失败，之间不是互为好友");
             return Result.failure(ResultCode.USER_CONFIRM_FAILURE_);
+        }
+    }
+
+    @Override
+    public Result deleteRelationByMobile(String mobile1, String mobile2) {
+        if (userMapper.deleteRelationByMobile(mobile1,mobile2)==1){
+            return  Result.success();
+        }else {
+            return Result.failure(ResultCode.USER_DELETERELATION_FAILURE_);
         }
     }
 }

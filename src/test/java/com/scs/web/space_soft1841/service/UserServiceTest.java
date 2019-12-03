@@ -1,7 +1,7 @@
 package com.scs.web.space_soft1841.service;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
-import com.scs.web.space_soft1841.controller.Md5;
+import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
@@ -86,7 +86,13 @@ class UserServiceTest {
 
     @Test
     void confirmRelationByMobile() {
-       Result result =  userService.confirmRelationByMobile("13917310803","13937241160");
+       Result result =  userService.confirmRelationByMobile("13937241160","13921557438");
+        System.out.println(result);
+    }
+
+    @Test
+    void deleteRelationByMobile() {
+        Result result = userService.deleteRelationByMobile("13937241160","13921557438");
         System.out.println(result);
     }
 }
