@@ -55,11 +55,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result findUserByMobile(String mobile){
+    public Result findUserByMobile(String mobile) {
         User user = userMapper.findUserByMobile(mobile);
         if (user != null) {
             return Result.success();
-        }else {
+        } else {
             logger.error("根据手机号查询用户出现异常");
             return Result.failure(ResultCode.USER_SELECT_FAILURE_);
         }
@@ -68,12 +68,47 @@ public class UserServiceImpl implements UserService {
     @Override
     public Result updateUser(User user) {
         User user1 = userMapper.findUserByMobile(user.getMobile());
-        if (user1!=null){
-            logger.error("更改用户信息失败");
+        if (user1 == null) {
+            logger.error("没有找到用户信息失败");
             return Result.failure(ResultCode.USER_UPDATE_FAILURE_);
-        }else {
+        } else {
             userMapper.updateUser(user);
         }
         return Result.success();
+    }
+
+    @Override
+    public Result findUser(User user) {
+        if (userMapper.findUser(user) == false) {
+            logger.error("用户找不到");
+            return Result.failure(ResultCode.USER_NOT_EXIST);
+        } else {
+            return Result.success();
+        }
+    }
+
+    @Override
+    public Result insert(User user) {
+        User user1 = userMapper.findUserByMobile(user.getMobile());
+        if (user1 == null) {
+            try {
+                userMapper.insert(user);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            return Result.failure(ResultCode.USER_SELECT_FAILURE_);
+        }
+        return Result.success();
+    }
+
+    @Override
+    public Result confirmRelationByMobile(String mobile1, String mobile2) {
+        if (userMapper.confirmRelationByMobile(mobile1,mobile2) ==1){
+            return  Result.success();
+        }else {
+            logger.error("查询失败，之间不是互为好友");
+            return Result.failure(ResultCode.USER_CONFIRM_FAILURE_);
+        }
     }
 }

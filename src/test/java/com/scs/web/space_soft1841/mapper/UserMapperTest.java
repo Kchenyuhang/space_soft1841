@@ -7,10 +7,7 @@ import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import sun.security.provider.MD5;
-
 import javax.annotation.Resource;
-import javax.jws.soap.SOAPBinding;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -51,7 +48,7 @@ class UserMapperTest {
         User user = new User();
         user.setUserId(1);
         user.setMobile("13917310803");
-        user.setPassword("111");
+        user.setPassword(Md5.MD5("111"));
         user.setNickname("测试");
         user.setEmail("测试");
         user.setAvatar("测试");
