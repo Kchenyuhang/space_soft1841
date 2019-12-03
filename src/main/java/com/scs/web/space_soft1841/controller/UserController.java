@@ -31,9 +31,9 @@ public class UserController {
         return result;
     }
 
-//    @DeleteMapping(value = "/{id}")
-//    public Result deleteUserById(@PathVariable int id){
-//        Result result = userService.deleteUserById(id);
-//        return result;
-//    }
+    @PutMapping(value = "/insert")
+    public Result insertUser(@RequestBody User user){
+        return null;
+    }
+
 }

@@ -1,16 +1,14 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
-import com.scs.web.space_soft1841.controller.Md5;
+import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import sun.security.provider.MD5;
 
 import javax.annotation.Resource;
-import javax.jws.soap.SOAPBinding;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;

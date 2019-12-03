@@ -1,4 +1,4 @@
-package com.scs.web.space_soft1841.controller;
+package com.scs.web.space_soft1841.until;
 
 import java.security.MessageDigest;
 
