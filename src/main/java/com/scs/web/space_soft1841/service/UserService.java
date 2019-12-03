@@ -40,4 +40,7 @@ public interface UserService {
      */
     Result updateUser(User user);
 
+    boolean confirmRelationByMobile(String mobile1, String mobile2);
+
+    Result deleteRelationByMobile(String mobile1,String mobile2);
 }

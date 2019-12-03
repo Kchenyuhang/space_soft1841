@@ -60,11 +60,7 @@ class UserServiceTest {
 
     @Test
     void findUser() {
-        User user = new User();
-        user.setMobile("13013947768");
-        user.setPassword("111");
-        Result result = userService.findUser(user);
-        System.out.println(result);
+
     }
 
     @Test
@@ -80,13 +76,11 @@ class UserServiceTest {
         user.setIntroduction("测");
         user.setBirthday(new Date(2101-01-12));
         user.setCreateTime(LocalDateTime.now());
-        Result result = userService.insert(user);
-        System.out.println(result);
     }
 
     @Test
     void confirmRelationByMobile() {
-       Result result =  userService.confirmRelationByMobile("13937241160","13921557438");
+        boolean result =  userService.confirmRelationByMobile("13937241160","13921557438");
         System.out.println(result);
     }
 

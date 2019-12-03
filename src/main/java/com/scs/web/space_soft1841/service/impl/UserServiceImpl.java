@@ -75,4 +75,20 @@ public class UserServiceImpl implements UserService {
         }
         return Result.success();
     }
+
+    @Override
+    public boolean confirmRelationByMobile(String mobile1, String mobile2) {
+        if (userMapper.confirmRelationByMobile(mobile1,mobile2)==0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Result deleteRelationByMobile(String mobile1,String mobile2) {
+        if (userMapper.deleteRelationByMobile(mobile1,mobile2)==1){
+            return Result.success();
+        }
+        return Result.failure(ResultCode.USER_DELETE_FAILURE_);
+    }
 }
