@@ -4,6 +4,7 @@ import com.scs.web.space_soft1841.domain.entity.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
@@ -15,20 +16,61 @@ import java.sql.SQLException;
  * @Date 2019/12/2
  **/
 public interface UserMapper {
-
-    @Insert("INSERT INTO t_user (mobile,password) VALUES (#{mobile},#{password})")
+    /**
+     * 根据手机号(mobile)，密码(password)，昵称(nickname)，邮箱(email)，头像(avatar)，地址(address)，
+     * 性别(gender)，介绍(introduction)，生日(birthday)，创建时间(createTime)等新增用户
+     * @param user
+     * @throws SQLException
+     */
+    @Insert("INSERT INTO t_user (mobile,password,nickname,email,avatar,address,gender,introduction,birthday,createTime) " +
+            "VALUES (#{mobile},#{password},#{nickname},#{email},#{avatar},#{address},#{gender},#{introduction},#{birthday},#{createTime})")
     void insert(User user)throws SQLException;
 
+    /**
+     * 根据手机号查询用户信息，用于：验证登录，获取用户信息
+     * @param mobile
+     * @return
+     */
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile}")
     User findUserByMobile(String mobile);
+//    @Select("SELECT * FROM t_user WHERE id = #{id}")
+//    User findUserById(int id);
 
-    @Select("SELECT * FROM t_user WHERE id = #{id}")
-    User findUserById(int id);
-
-    @Delete("DELETE FROM t_user WHERE id = #{id} ")
-    void deleteById(int id)throws SQLException;
-
+//    @Delete("DELETE FROM t_user WHERE id = #{id} ")
+//    void deleteById(int id)throws SQLException;
+    /**
+     * 根据手机号注销用户
+     * @param mobile
+     * @throws SQLException
+     */
     @Delete("DELETE FROM t_user WHERE mobile = #{mobile} ")
     void deleteByMobile(String mobile)throws SQLException;
 
+    /**
+     * 根据是否有双方手机号关系来判断双方是否为好友
+     * mobile1->mobile2存在，mobile2是mobile1好友
+     * 若mobile1删除mobile2,则只删除mobile1->mobile2
+     * @param mobile1
+     * @param mobile2
+     */
+    @Select("SELECT * FROM t_relationship WHERE mobile1 =#{mobile1} && mobile2=#{mobile2}")
+    void confirmRelationById(String mobile1,String mobile2);
+
+    /**
+     * 单方面删除
+     * 根据手机号来删除mobile1的好友mobile2
+     * @param mobile1
+     * @param mobile2
+     */
+    @Delete("DELETE * FROM t_relationship WHERE mobile1 =#{mobile1} && mobile2=#{mobile2}")
+    void deleteRelationById(String mobile1,String mobile2);
+
+    /**
+     * 修改用户个人信息
+     * @param user
+     */
+    @Update({"UPDATE t_user SET avatar=#{avatar},gender=#{gender},address=#{address}," +
+            "nickname=#{nickname},password=#{password},introduction=#{introduction},email=#{email}" +
+            "birthday=#{birthday},mobile=#{mobile} WHERE userId=#{userId}"})
+    void updateUser(User user);
 }
