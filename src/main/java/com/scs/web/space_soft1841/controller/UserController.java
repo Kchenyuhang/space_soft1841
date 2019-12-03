@@ -26,14 +26,14 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/")
-    public Result deleteUser(@RequestParam String mobile){
-        Result result = userService.deleteUser(mobile);
+    public Result deleteByMobile(@RequestParam String mobile){
+        Result result = userService.deleteByMobile(mobile);
         return result;
     }
 
-    @DeleteMapping(value = "/{id}")
-    public Result deleteUserById(@PathVariable int id){
-        Result result = userService.deleteUserById(id);
-        return result;
-    }
+//    @DeleteMapping(value = "/{id}")
+//    public Result deleteUserById(@PathVariable int id){
+//        Result result = userService.deleteUserById(id);
+//        return result;
+//    }
 }

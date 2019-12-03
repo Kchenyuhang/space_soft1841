@@ -2,9 +2,11 @@ package com.scs.web.space_soft1841.domain.entity;
 
 import lombok.Data;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 /**
  * @ClassName User实现类
@@ -23,7 +25,7 @@ public class User {
     private String address;
     private String gender;
     private String introduction;
-    private LocalDate birthday;
+    private Date birthday;
     private LocalDateTime createTime;
     private String homepage;
     private Short status;
