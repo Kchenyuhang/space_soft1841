@@ -37,4 +37,9 @@ class UserServiceTest {
         Result result = userService.findUserByMobile("13932330575");
         System.out.println(result);
     }
+
+    @Test
+    void updateUser() {
+
+    }
 }

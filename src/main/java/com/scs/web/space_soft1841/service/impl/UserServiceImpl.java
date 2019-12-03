@@ -66,13 +66,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result updateUserById(User user) {
+    public Result updateUser(User user) {
         User user1 = userMapper.findUserByMobile(user.getMobile());
         if (user1!=null){
-            logger.error("查询用户失败");
-            return Result.failure(ResultCode.USER_HAS_EXISTED);
+            logger.error("更改用户信息失败");
+            return Result.failure(ResultCode.USER_UPDATE_FAILURE_);
         }else {
-            userMapper.updateUserById(user);
+            userMapper.updateUser(user);
         }
         return Result.success();
     }

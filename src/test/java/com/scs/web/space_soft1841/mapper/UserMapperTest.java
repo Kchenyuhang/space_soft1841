@@ -59,7 +59,7 @@ class UserMapperTest {
         user.setGender("测试");
         user.setIntroduction("测试");
         user.setBirthday(new Date(2000-02-01));
-        userMapper.updateUserById(user);
+        userMapper.updateUser(user);
     }
 
     @Test
