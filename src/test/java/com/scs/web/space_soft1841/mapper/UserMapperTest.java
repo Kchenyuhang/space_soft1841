@@ -1,13 +1,12 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
-import com.scs.web.space_soft1841.until.Md5;
+import com.scs.web.space_soft1841.controller.Md5;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import javax.annotation.Resource;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -49,7 +48,7 @@ class UserMapperTest {
         User user = new User();
         user.setUserId(1);
         user.setMobile("13917310803");
-        user.setPassword("111");
+        user.setPassword(Md5.MD5("111"));
         user.setNickname("测试");
         user.setEmail("测试");
         user.setAvatar("测试");
