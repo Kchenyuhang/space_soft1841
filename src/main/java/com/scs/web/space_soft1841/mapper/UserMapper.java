@@ -75,7 +75,7 @@ public interface UserMapper {
     @Update({"UPDATE t_user SET avatar=#{avatar},gender=#{gender},address=#{address}," +
             "nickname=#{nickname},password=#{password},introduction=#{introduction},email=#{email}," +
             "birthday=#{birthday},mobile=#{mobile} WHERE user_id=#{userId}"})
-    void updateUserById(User user);
+    void updateUser(User user);
 
     /**
      * 查询用户手机号 和密码 进行登录功能

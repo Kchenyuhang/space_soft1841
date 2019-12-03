@@ -18,5 +18,6 @@ public interface UserService {
 
     Result findUserByMobile(String mobile);
 
-    Result updateUserById(User user);
+    Result updateUser(User user);
+
 }
