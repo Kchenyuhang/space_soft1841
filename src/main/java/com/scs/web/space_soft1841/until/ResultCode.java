@@ -33,7 +33,8 @@ public enum ResultCode {
     USER_SELECT_FAILURE_(20010, "用户查询失败"),
     USER_UPDATE_FAILURE_(20011, "用户信息更新失败"),
     USER_CONFIRM_FAILURE_(20012, "用户关系查询失败"),
-
+    USER_MOBILE_EXIST_(20013,"该用户已存在"),
+    USER_VERIFYCODE_ERROR_(20014,"验证码输入错误"),
 
 
     /* 业务错误：30001-39999 */

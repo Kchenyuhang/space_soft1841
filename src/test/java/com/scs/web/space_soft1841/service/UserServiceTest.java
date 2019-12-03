@@ -34,8 +34,8 @@ class UserServiceTest {
 
     @Test
     void findUserByMobile() {
-        Result result = userService.findUserByMobile("13932330575");
-        System.out.println(result);
+        boolean a =userService.findUserByMobile("13013947768");
+        System.out.println(a);
     }
 
     @Test

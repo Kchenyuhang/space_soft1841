@@ -12,12 +12,32 @@ import java.sql.SQLException;
  * @Date 2019/12/2
  **/
 public interface UserService {
+    /**
+     * 判断是否有改用户
+     * @param user
+     * @return
+     */
     Result signUp(User user);
 
+    /**
+     * 根据手机号注销账号
+     * @param mobile
+     * @return
+     */
     Result deleteByMobile(String mobile);
 
-    Result findUserByMobile(String mobile);
+    /**
+     * 根据手机号查询用户
+     * @param mobile
+     * @return
+     */
+    boolean findUserByMobile(String mobile);
 
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
     Result updateUser(User user);
 
 }

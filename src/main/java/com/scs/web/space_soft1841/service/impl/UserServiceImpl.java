@@ -55,13 +55,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result findUserByMobile(String mobile){
+    public boolean findUserByMobile(String mobile){
         User user = userMapper.findUserByMobile(mobile);
         if (user != null) {
-            return Result.success();
+            return true;
         }else {
-            logger.error("根据手机号查询用户出现异常");
-            return Result.failure(ResultCode.USER_SELECT_FAILURE_);
+            return false;
         }
     }
 

@@ -38,7 +38,7 @@ class UserMapperTest {
 
     @Test
     void findUserByMobile() {
-        System.out.println(userMapper.findUserByMobile("13932330575"));
+        System.out.println(userMapper.findUserByMobile("18061752267")!=null);
     }
 
     @Test
