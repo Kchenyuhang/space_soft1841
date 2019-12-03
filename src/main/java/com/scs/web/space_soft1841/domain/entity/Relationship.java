@@ -11,6 +11,6 @@ import lombok.Data;
 @Data
 public class Relationship {
     private Long relationshipId;
-    private Integer user1Id;
-    private Integer user2Id;
+    private String mobile1;
+    private String mobile2;
 }
