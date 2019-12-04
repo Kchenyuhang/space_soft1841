@@ -40,7 +40,26 @@ public interface UserService {
      */
     Result updateUser(User user);
 
+    /**
+     * 确定好友关系
+     * @param mobile1
+     * @param mobile2
+     * @return
+     */
     boolean confirmRelationByMobile(String mobile1, String mobile2);
 
+    /**
+     * 删除好友关系
+     * @param mobile1
+     * @param mobile2
+     * @return
+     */
     Result deleteRelationByMobile(String mobile1,String mobile2);
+
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
+    Result login(User user);
 }

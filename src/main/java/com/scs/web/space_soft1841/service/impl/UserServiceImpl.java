@@ -55,40 +55,45 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean findUserByMobile(String mobile){
+    public boolean findUserByMobile(String mobile) {
         User user = userMapper.findUserByMobile(mobile);
         if (user != null) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
     @Override
     public Result updateUser(User user) {
-        User user1 = userMapper.findUserByMobile(user.getMobile());
-        if (user1!=null){
-            logger.error("更改用户信息失败");
-            return Result.failure(ResultCode.USER_UPDATE_FAILURE_);
-        }else {
-            userMapper.updateUser(user);
-        }
+        userMapper.updateUser(user);
         return Result.success();
     }
 
     @Override
     public boolean confirmRelationByMobile(String mobile1, String mobile2) {
-        if (userMapper.confirmRelationByMobile(mobile1,mobile2)==0){
+        if (userMapper.confirmRelationByMobile(mobile1, mobile2) == 0) {
             return false;
         }
         return true;
     }
 
     @Override
-    public Result deleteRelationByMobile(String mobile1,String mobile2) {
-        if (userMapper.deleteRelationByMobile(mobile1,mobile2)==1){
+    public Result deleteRelationByMobile(String mobile1, String mobile2) {
+        if (userMapper.deleteRelationByMobile(mobile1, mobile2) == 1) {
             return Result.success();
         }
         return Result.failure(ResultCode.USER_DELETE_FAILURE_);
+    }
+
+    @Override
+    public Result login(User user) {
+        Result result = Result.success(userMapper.login(user));
+        if (result.getCode()==1){
+            return Result.success(user.getMobile());
+        } else {
+            return Result.failure(ResultCode.USER_LOGIN_FAIL);
+        }
+
     }
 }

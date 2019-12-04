@@ -3,11 +3,9 @@ package com.scs.web.space_soft1841.controller;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.mapper.UserMapper;
 import com.scs.web.space_soft1841.service.UserService;
-import com.scs.web.space_soft1841.service.impl.RedisService;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
 import com.scs.web.space_soft1841.until.SMSUtil;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,23 +28,11 @@ public class UserController {
     String code;
     HashMap<String ,String> hash = new HashMap<>();
 
-    @PostMapping(value = "/sign-up")
-    public Result userSignUp(@RequestBody User user){
-        Result result = userService.signUp(user);
-        return result;
-    }
-
-    @DeleteMapping(value = "/")
-    public Result deleteByMobile(@RequestParam String mobile){
+    @DeleteMapping(value = "/deleteUser")
+    public Result deleteUserByMobile(@RequestParam String mobile){
         Result result = userService.deleteByMobile(mobile);
         return result;
     }
-
-//    @DeleteMapping(value = "/{id}")
-//    public Result deleteUserById(@PathVariable int id){
-//        Result result = userService.deleteUserById(id);
-//        return result;
-//    }
 
     @PostMapping(value = "/verify")
     public Result getVerifyCode(@RequestParam("mobile") String mobile) {
@@ -61,6 +47,7 @@ public class UserController {
             return Result.success();
         }
     }
+
     @PostMapping(value = "/check")
     public Result checkVerifyCode(@RequestParam("mobile") String mobile, @RequestParam("verifyCode") String verifyCode) {
         //从Redis中取出这个手机号的验证码
@@ -71,5 +58,31 @@ public class UserController {
         } else {
             return Result.failure(ResultCode.USER_VERIFYCODE_ERROR_);
         }
+    }
+
+    /**
+     * 用户个人资料更新（未完成）
+     * @param user
+     * @return
+     */
+    @GetMapping(value = "/updateUser")
+    public Result updateUserMessage(@RequestBody User user){
+        Result result = userService.updateUser(user);
+        return result;
+    }
+
+    /**
+     * 用户登录
+     * @param mobile
+     * @param password
+     * @return
+     */
+    @PostMapping(value = "/login")
+    public Result userLogin(@RequestParam String mobile, String password){
+        User user = new User();
+        user.setMobile(mobile);
+        user.setPassword(password);
+        Result result = Result.success(userService.login(user));
+        return result;
     }
 }

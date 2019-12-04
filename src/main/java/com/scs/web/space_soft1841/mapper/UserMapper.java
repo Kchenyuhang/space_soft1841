@@ -1,11 +1,9 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.domain.entity.User;
+import com.scs.web.space_soft1841.until.Result;
 import com.sun.org.apache.xpath.internal.objects.XString;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
 
@@ -33,11 +31,7 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile}")
     User findUserByMobile(String mobile);
-//    @Select("SELECT * FROM t_user WHERE id = #{id}")
-//    User findUserById(int id);
 
-//    @Delete("DELETE FROM t_user WHERE id = #{id} ")
-//    void deleteById(int id)throws SQLException;
     /**
      * 根据手机号注销用户
      * @param mobile
@@ -82,5 +76,5 @@ public interface UserMapper {
      * @return boolean
      */
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile} and password=#{password}")
-    boolean findUser(User user);
+    Result login(User user);
 }

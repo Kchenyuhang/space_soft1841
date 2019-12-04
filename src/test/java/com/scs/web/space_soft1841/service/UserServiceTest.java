@@ -46,21 +46,17 @@ class UserServiceTest {
     void updateUser() {
         User user = new User();
         user.setUserId(24);
-        user.setMobile("13013947768");
-        user.setPassword("111");
+        user.setMobile("18932386185");
+        user.setPassword(Md5.MD5("222"));
         user.setNickname("测试");
-        user.setEmail("测试");
+        user.setEmail("1797262364@qq.com");
         user.setAvatar("测试");
         user.setAddress("测试");
-        user.setGender("测试");
+        user.setGender("男");
         user.setIntroduction("测试");
+        user.setBirthday(Date.valueOf("1999-12-14"));
         Result result = userService.updateUser(user);
         System.out.println(result);
-    }
-
-    @Test
-    void findUser() {
-
     }
 
     @Test
@@ -74,7 +70,7 @@ class UserServiceTest {
         user.setAddress("测");
         user.setGender("测");
         user.setIntroduction("测");
-        user.setBirthday(new Date(2101-01-12));
+        user.setBirthday(new Date(2101-1-12));
         user.setCreateTime(LocalDateTime.now());
     }
 
@@ -88,5 +84,18 @@ class UserServiceTest {
     void deleteRelationByMobile() {
         Result result = userService.deleteRelationByMobile("13937241160","13921557438");
         System.out.println(result);
+    }
+
+    @Test
+    void login() {
+        User user = new User();
+        user.setMobile("13937241160");
+        user.setPassword(Md5.MD5("111"));
+        Result result = Result.success(userService.login(user));
+        if (result.getCode() == 1){
+            System.out.println(Result.success());
+        } else {
+            System.out.println(Result.failure(ResultCode.USER_LOGIN_FAIL));
+        }
     }
 }
