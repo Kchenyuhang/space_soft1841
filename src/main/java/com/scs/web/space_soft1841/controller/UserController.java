@@ -122,13 +122,19 @@ public class UserController {
     public Result userLogin(@RequestParam String mobile, String password) {
         List<User> userList = new ArrayList<>();
         List<User> list = userService.userLogin(mobile, password);
-        if (list.size()!=0){
-            for (User  user :list ){
-                userList.add(user);
+        List<User> existList = userService.findQueryMobile(mobile);
+        if (existList.size()==0){
+            return Result.failure(ResultCode.USER_NOT_EXIST,"该用户不存在");
+        }else {
+            if (list.size()!=0){
+                for (User  user :list ){
+                    userList.add(user);
+                }
+                return Result.success(userList);
             }
-            return Result.success(userList);
+            return Result.failure(ResultCode.USER_LOGIN_FAIL,"密码输入错误");
         }
-        return Result.failure(ResultCode.USER_LOGIN_FAIL);
+
     }
 
     /**
