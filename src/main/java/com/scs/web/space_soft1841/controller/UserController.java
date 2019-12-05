@@ -118,12 +118,12 @@ public class UserController {
      * @return user
      */
     @PostMapping(value = "/login")
-    public List<User> userLogin(@RequestParam String mobile, String password) {
+    public Result userLogin(@RequestParam String mobile, String password) {
         List<User> userList = new ArrayList<>();
         for (User  user : userService.userLogin(mobile, password)){
             userList.add(user);
         }
-        return userList;
+        return Result.success(userList);
     }
 
     /**
@@ -132,11 +132,11 @@ public class UserController {
      * @return list
      */
     @PostMapping(value = "/findQuery")
-    public List<User> findQuery(@RequestParam String mobile){
+    public Result findQuery(@RequestParam String mobile){
         List<User> list = new ArrayList<>();
         for (User user:userService.findQueryMobile(mobile)){
             list.add(user);
         }
-        return list;
+        return Result.success(list);
     }
 }
