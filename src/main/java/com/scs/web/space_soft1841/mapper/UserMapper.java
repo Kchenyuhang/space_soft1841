@@ -83,9 +83,7 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile} AND password=#{password}")
     List<User> userLogin(String mobile, String password);
-
-
-
+    
     /**
      * 用户登入进去之后 把昵称和头像带过去。
      * @param mobile

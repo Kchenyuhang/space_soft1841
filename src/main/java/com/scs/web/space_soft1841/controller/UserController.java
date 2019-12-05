@@ -96,7 +96,7 @@ public class UserController {
         user.setPassword(password);
         user.setCreateTime(LocalDateTime.now());
         Result result = userService.register(user);
-        return result;
+        return Result.success(result);
     }
 
     /**
@@ -131,8 +131,10 @@ public class UserController {
                     userList.add(user);
                 }
                 return Result.success(userList);
+            }else {
+                return Result.failure(ResultCode.USER_LOGINPASSWORD_ERROR,"密码输入错误");
             }
-            return Result.failure(ResultCode.USER_LOGIN_FAIL,"密码输入错误");
+
         }
 
     }
