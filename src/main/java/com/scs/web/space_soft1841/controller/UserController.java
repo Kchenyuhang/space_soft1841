@@ -6,6 +6,7 @@ import com.scs.web.space_soft1841.service.UserService;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
 import com.scs.web.space_soft1841.until.SMSUtil;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -120,10 +121,14 @@ public class UserController {
     @PostMapping(value = "/login")
     public Result userLogin(@RequestParam String mobile, String password) {
         List<User> userList = new ArrayList<>();
-        for (User  user : userService.userLogin(mobile, password)){
-            userList.add(user);
+        List<User> list = userService.userLogin(mobile, password);
+        if (list.size()!=0){
+            for (User  user :list ){
+                userList.add(user);
+            }
+            return Result.success(userList);
         }
-        return Result.success(userList);
+        return Result.failure(ResultCode.USER_LOGIN_FAIL);
     }
 
     /**
@@ -134,9 +139,14 @@ public class UserController {
     @PostMapping(value = "/findQuery")
     public Result findQuery(@RequestParam String mobile){
         List<User> list = new ArrayList<>();
-        for (User user:userService.findQueryMobile(mobile)){
-            list.add(user);
+        List<User> list1 = userService.findQueryMobile(mobile);
+        if (list1.size()==0){
+            return Result.failure(ResultCode.USER_SELECT_FAILURE_);
+        } else {
+            for (User user:list1){
+                list.add(user);
+            }
+            return Result.success(list);
         }
-        return Result.success(list);
     }
 }
