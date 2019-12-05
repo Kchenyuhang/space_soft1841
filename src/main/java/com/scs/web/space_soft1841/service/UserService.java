@@ -4,6 +4,7 @@ import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @ClassName UserService
@@ -13,14 +14,16 @@ import java.sql.SQLException;
  **/
 public interface UserService {
     /**
-     * 判断是否有改用户
+     * 用户注册
+     *
      * @param user
      * @return
      */
-    Result signUp(User user);
+    Result register(User user);
 
     /**
      * 根据手机号注销账号
+     *
      * @param mobile
      * @return
      */
@@ -28,6 +31,7 @@ public interface UserService {
 
     /**
      * 根据手机号查询用户
+     *
      * @param mobile
      * @return
      */
@@ -35,6 +39,7 @@ public interface UserService {
 
     /**
      * 更新用户信息
+     *
      * @param user
      * @return
      */
@@ -42,6 +47,7 @@ public interface UserService {
 
     /**
      * 确定好友关系
+     *
      * @param mobile1
      * @param mobile2
      * @return
@@ -50,16 +56,27 @@ public interface UserService {
 
     /**
      * 删除好友关系
+     *
      * @param mobile1
      * @param mobile2
      * @return
      */
-    Result deleteRelationByMobile(String mobile1,String mobile2);
+    Result deleteRelationByMobile(String mobile1, String mobile2);
 
     /**
      * 用户登录
-     * @param user
+     *
+     * @param mobile
+     * @param password
      * @return
      */
-    Result login(User user);
+    List<User> userLogin(String mobile,String password);
+
+    /**
+     * 登入进去之后 把头像和昵称传过去
+     * @param mobile
+     * @return
+     */
+    List<User> findQueryMobile(String mobile);
+
 }

@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class UserMapperTest {
@@ -19,19 +20,12 @@ class UserMapperTest {
     private UserMapper userMapper;
 
     @Test
-    void insert() throws SQLException {
+    void register() throws SQLException {
         User user = new User();
-        user.setMobile("13013947768");
+        user.setMobile("123456");
         user.setPassword("111");
-        user.setNickname("测试");
-        user.setEmail("");
-        user.setAvatar("");
-        user.setAddress("");
-        user.setGender("");
-        user.setIntroduction("");
-        user.setBirthday(Date.valueOf("2000-12-14"));
         user.setCreateTime(LocalDateTime.now());
-        userMapper.insert(user);
+        userMapper.register(user);
     }
 
     @Test
@@ -42,6 +36,21 @@ class UserMapperTest {
     @Test
     void deleteByMobile() throws SQLException {
         userMapper.deleteByMobile("13917310803");
+    }
+
+    @Test
+    void confirmRelationByMobile() {
+        if (userMapper.confirmRelationByMobile("13917310803", "13937241160") != 0) {
+            System.out.println(Result.success());
+        } else {
+            System.out.println(Result.failure(ResultCode.USER_CONFIRM_FAILURE_));
+        }
+    }
+
+    @Test
+    void deleteRelationByMobile() {
+        int n = userMapper.deleteRelationByMobile("13983862268", "13917310803");
+        System.out.println(n);
     }
 
     @Test
@@ -61,31 +70,15 @@ class UserMapperTest {
     }
 
     @Test
-    void confirmRelationByMobile() {
-        if (userMapper.confirmRelationByMobile("13917310803", "13937241160") != 0) {
-            System.out.println(Result.success());
-        } else {
-            System.out.println(Result.failure(ResultCode.USER_CONFIRM_FAILURE_));
-        }
+    void userLogin() {
+        String mobile= "18932386185";
+        String password = Md5.MD5("111");
+        userMapper.userLogin(mobile,password);
     }
 
     @Test
-    void deleteRelationByMobile() {
-        int n = userMapper.deleteRelationByMobile("13983862268", "13917310803");
-        System.out.println(n);
-    }
-
-
-    @Test
-    void login() {
-        User user = new User();
-        user.setMobile("13937241160");
-        user.setPassword(Md5.MD5("111"));
-        Result result = Result.success(userMapper.login(user));
-        if (result.getCode()==1){
-            System.out.println(Result.success());
-        } else {
-            System.out.println(Result.failure(ResultCode.USER_LOGIN_FAIL));
-        }
+    void findQueryMobile() {
+        List<User> list = userMapper.findQueryMobile("13937241160");
+        System.out.println(list);
     }
 }

@@ -3,6 +3,7 @@ package com.scs.web.space_soft1841.service.impl;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.mapper.UserMapper;
 import com.scs.web.space_soft1841.service.UserService;
+import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName UserServiceImpl
@@ -25,13 +28,13 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public Result signUp(User user) {
+    public Result register(User user) {
         User user1 = userMapper.findUserByMobile(user.getMobile());
         if (user1 != null) {
             return Result.failure(ResultCode.USER_HAS_EXISTED);
         } else {
             try {
-                userMapper.insert(user);
+                userMapper.register(user);
             } catch (SQLException e) {
                 logger.error("新增用户出现异常");
                 return Result.failure(ResultCode.USER_SIGN_UP_FAILURE_);
@@ -65,12 +68,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result updateUser(User user) {
-        userMapper.updateUser(user);
-        return Result.success();
-    }
-
-    @Override
     public boolean confirmRelationByMobile(String mobile1, String mobile2) {
         if (userMapper.confirmRelationByMobile(mobile1, mobile2) == 0) {
             return false;
@@ -87,13 +84,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result login(User user) {
-        Result result = Result.success(userMapper.login(user));
-        if (result.getCode()==1){
-            return Result.success(user.getMobile());
-        } else {
-            return Result.failure(ResultCode.USER_LOGIN_FAIL);
-        }
-
+    public Result updateUser(User user) {
+        userMapper.updateUser(user);
+        return Result.success();
     }
+
+    @Override
+    public List<User> userLogin(String mobile,String password) {
+        return userMapper.userLogin(mobile, Md5.MD5(password));
+    }
+
+    @Override
+    public List<User> findQueryMobile(String mobile) {
+        List<User>  list = new ArrayList<>();
+        list = userMapper.findQueryMobile(mobile);
+        return list;
+    }
+
 }

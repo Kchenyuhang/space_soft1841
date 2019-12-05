@@ -12,8 +12,8 @@ import javax.annotation.Resource;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class UserServiceTest {
@@ -21,13 +21,12 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
-    void signUp() {
+    void register() {
         User user = new User();
-        user.setMobile("13988882222");
+        user.setMobile("121233");
         user.setPassword(Md5.MD5("111"));
-        Result result = userService.signUp(user);
-        System.out.println(result);
-//        assertEquals(1,result.getCode());
+        user.setCreateTime(LocalDateTime.now());
+        userService.register(user);
     }
 
     @Test
@@ -54,24 +53,9 @@ class UserServiceTest {
         user.setAddress("测试");
         user.setGender("男");
         user.setIntroduction("测试");
-        user.setBirthday(Date.valueOf("1999-12-14"));
+        user.setBirthday(Date.valueOf("2000-10-10"));
         Result result = userService.updateUser(user);
         System.out.println(result);
-    }
-
-    @Test
-    void insert() {
-        User user = new User();
-        user.setMobile("13012344444");
-        user.setPassword(Md5.MD5("111"));
-        user.setNickname("测");
-        user.setEmail("测");
-        user.setAvatar("测");
-        user.setAddress("测");
-        user.setGender("测");
-        user.setIntroduction("测");
-        user.setBirthday(new Date(2101-1-12));
-        user.setCreateTime(LocalDateTime.now());
     }
 
     @Test
@@ -87,15 +71,17 @@ class UserServiceTest {
     }
 
     @Test
-    void login() {
-        User user = new User();
-        user.setMobile("13937241160");
-        user.setPassword(Md5.MD5("111"));
-        Result result = Result.success(userService.login(user));
-        if (result.getCode() == 1){
-            System.out.println(Result.success());
-        } else {
-            System.out.println(Result.failure(ResultCode.USER_LOGIN_FAIL));
-        }
+    void userLogin() {
+        String mobile = "18932386185";
+        String password = "222";
+        List<User> userList = userService.userLogin(mobile,password);
+        System.out.println(userList);
+    }
+
+    @Test
+    void findQueryMobile() {
+        List<User> list = new ArrayList<>();
+        list = userService.findQueryMobile("13921557438");
+        System.out.println(list);
     }
 }
