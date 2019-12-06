@@ -87,11 +87,15 @@ public class UserController {
         }
     }
 
-
+    /**
+     * 用户注册
+     * @param mobile
+     * @param password
+     * @return
+     */
     @PostMapping(value = "/register")
     public Result register(@RequestParam("mobile") String mobile,@RequestParam("password")String password){
         User user = new User();
-//        mobile =phone;
         user.setMobile(mobile);
         user.setPassword(password);
         user.setCreateTime(LocalDateTime.now());
@@ -100,7 +104,7 @@ public class UserController {
     }
 
     /**
-     * 用户个人资料更新（未完成）
+     * 用户个人资料更新
      *
      * @param user
      * @return user
@@ -112,7 +116,7 @@ public class UserController {
     }
 
     /**
-     * 用户登录(未完成)
+     * 用户登录
      *
      * @param mobile
      * @param password
@@ -120,41 +124,52 @@ public class UserController {
      */
     @PostMapping(value = "/login")
     public Result userLogin(@RequestParam String mobile, String password) {
-        List<User> userList = new ArrayList<>();
+        User user1 = new User();
         List<User> list = userService.userLogin(mobile, password);
         List<User> existList = userService.findQueryMobile(mobile);
         if (existList.size()==0){
-            return Result.failure(ResultCode.USER_NOT_EXIST,"该用户不存在");
+            return Result.failure(ResultCode.USER_NOT_EXIST);
         }else {
             if (list.size()!=0){
                 for (User  user :list ){
-                    userList.add(user);
+                    user1.setUserId(user.getUserId());
+                    user1.setMobile(user.getMobile());
+                    user1.setPassword(user.getPassword());
+                    user1.setNickname(user.getNickname());
+                    user1.setIntroduction(user.getIntroduction());
+                    user1.setEmail(user.getEmail());
+                    user1.setAvatar(user.getAvatar());
+                    user1.setAddress(user.getAddress());
+                    user1.setGender(user.getGender());
+                    user1.setBirthday(user.getBirthday());
+                    user1.setHomepage(user.getHomepage());
+                    user1.setCreateTime(user.getCreateTime());
+                    user1.setStatus(user.getStatus());
                 }
-                return Result.success(userList);
+                return Result.success(user1);
             }else {
-                return Result.failure(ResultCode.USER_LOGINPASSWORD_ERROR,"密码输入错误");
+                return Result.failure(ResultCode.USER_LOGINPASSWORD_ERROR);
             }
-
         }
-
     }
 
     /**
      * 用户登入进去之后 得到昵称和头像
      * @param mobile
-     * @return list
+     * @return user
      */
     @PostMapping(value = "/findQuery")
     public Result findQuery(@RequestParam String mobile){
-        List<User> list = new ArrayList<>();
+        User user1 =new User();
         List<User> list1 = userService.findQueryMobile(mobile);
         if (list1.size()==0){
             return Result.failure(ResultCode.USER_SELECT_FAILURE_);
         } else {
             for (User user:list1){
-                list.add(user);
+                user1.setNickname(user.getNickname());
+                user1.setAvatar(user.getAvatar());
             }
-            return Result.success(list);
+            return Result.success(user1);
         }
     }
 }
