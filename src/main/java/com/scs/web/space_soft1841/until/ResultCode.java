@@ -36,6 +36,7 @@ public enum ResultCode {
     USER_MOBILE_EXIST_(20013,"该用户已存在"),
     USER_VERIFYCODE_ERROR_(20014,"验证码输入错误"),
     USER_LOGINPASSWORD_ERROR(20015,"密码错误"),
+    USER_MOBILE_ERROR(20016,"手机号格式错误"),
 
 
     /* 业务错误：30001-39999 */

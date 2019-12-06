@@ -1,8 +1,10 @@
 package com.scs.web.space_soft1841.controller;
 
+import com.alibaba.druid.sql.visitor.functions.If;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.mapper.UserMapper;
 import com.scs.web.space_soft1841.service.UserService;
+import com.scs.web.space_soft1841.until.LegalPhone;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
 import com.scs.web.space_soft1841.until.SMSUtil;
@@ -27,6 +29,7 @@ import java.util.List;
 public class UserController {
 
     @Resource
+
     private UserService userService;
     private UserMapper userMapper;
     private String phone;
@@ -53,16 +56,21 @@ public class UserController {
      */
     @PostMapping(value = "/verify")
     public Result getVerifyCode(@RequestParam("mobile") String mobile) {
-        //手机号已经被注册
-        if (userService.findUserByMobile(mobile) == true) {
-            return Result.failure(ResultCode.USER_MOBILE_EXIST_);
+        //判断手机号是否合法
+        if (LegalPhone.isMobiPhoneNum(mobile)){
+            //手机号已经被注册
+            if (userService.findUserByMobile(mobile)) {
+                return Result.failure(ResultCode.USER_MOBILE_EXIST_);
+            } else {
+                //发送验证码
+                code = SMSUtil.send(mobile);
+                phone = mobile;
+                hash.put(mobile, code);
+                //手机号和验证码作为键值对存入redis中
+                return Result.success();
+            }
         } else {
-            //发送验证码
-            code = SMSUtil.send(mobile);
-            phone = mobile;
-            hash.put(mobile, code);
-            //手机号和验证码作为键值对存入redis中
-            return Result.success();
+            return Result.failure(ResultCode.USER_MOBILE_ERROR);
         }
     }
 

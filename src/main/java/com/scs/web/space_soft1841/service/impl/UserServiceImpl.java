@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
             return Result.failure(ResultCode.USER_HAS_EXISTED);
         } else {
             try {
+                user.setPassword(Md5.MD5(user.getPassword()));
                 userMapper.register(user);
             } catch (SQLException e) {
                 logger.error("新增用户出现异常");
