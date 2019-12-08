@@ -16,26 +16,26 @@ public class AliOSSUtil {
      * @param file
      * @return String
      */
-    public static String ossUpload(File file) {
-        String bucketDomain = "https://student-manage99.oss-cn-hangzhou.aliyuncs.com/";
-        String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
-        String accessKeyId = "LTAI41PGLwQKBcVF";
-        String accessKeySecret = "DBUGgiRLZqycwd6i4I5XfmeI47IpcB";
-        String bucketName = "student-manage99";
-        String filedir = "logo/";
+    public static String upload(File file) {
+        String endpoint = "https://oss-cn-hangzhou.aliyuncs.com";
+        String accessKeyId = "LTAIJF6wLhIIsqOO";
+        String accessKeySecret = "SWi5Xp34hpFv9CZoa0yrbLSrJmFarl";
+        String bucketName = "niit-soft";
+        String filePath = "avatar/";
         String fileName = file.getName();
-        String fileKey = UUID.randomUUID().toString() + fileName.substring(fileName.indexOf("."));
+        String newFileName = UUID.randomUUID().toString() + fileName.substring(fileName.indexOf("."));
+        // 创建OSSClient实例
         OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
-        ossClient.putObject(bucketName, filedir + fileKey, file);
-        StringBuffer url = new StringBuffer();
-        url.append(bucketDomain).append(filedir).append(fileKey);
+        // 上传文件到指定位置，并使用UUID更名
+        ossClient.putObject(bucketName, filePath + newFileName, file);
+        // 拼接URL
+        String url = "https://niit-soft.oss-cn-hangzhou.aliyuncs.com/" + filePath + newFileName;
         ossClient.shutdown();
-        return url.toString();
+        return url;
     }
 
     public static void main(String[] args) {
-        File file = new File("D:/code.jpg");
-        String url = ossUpload(file);
+        String url = AliOSSUtil.upload(new File("D:/1.jpg"));
         System.out.println(url);
     }
 }
