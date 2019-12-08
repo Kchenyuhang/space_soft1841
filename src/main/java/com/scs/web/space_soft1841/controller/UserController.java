@@ -27,9 +27,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
-
     @Resource
-
     private UserService userService;
     private UserMapper userMapper;
     private String phone;
@@ -64,9 +62,15 @@ public class UserController {
             } else {
                 //发送验证码
                 code = SMSUtil.send(mobile);
+                hash.remove(mobile);
                 phone = mobile;
-                hash.put(mobile, code);
-                //手机号和验证码作为键值对存入redis中
+                try {
+                    hash.put(mobile, code);
+                    Thread.sleep(5000);
+                    hash.remove(mobile);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 return Result.success();
             }
         } else {
@@ -86,12 +90,16 @@ public class UserController {
     public Result checkVerifyCode(@RequestParam("mobile") String mobile, @RequestParam("verifyCode") String verifyCode) {
         //从Redis中取出这个手机号的验证码
         //和客户端传过来的验证码比对
-        if (hash.get(mobile).equals(verifyCode)) {
-            hash.remove(mobile);
-            return Result.success();
-        } else {
-            phone="";
-            return Result.failure(ResultCode.USER_VERIFYCODE_ERROR_);
+        if (hash.get(mobile)!=null){
+            if (hash.get(mobile).equals(verifyCode)) {
+                hash.remove(mobile);
+                return Result.success();
+            } else {
+                phone="";
+                return Result.failure(ResultCode.USER_VERIFYCODE_ERROR_);
+            }
+        }else {
+            return Result.failure(ResultCode.USER_CODE_NONSEXIST);
         }
     }
 
@@ -107,8 +115,8 @@ public class UserController {
         user.setMobile(mobile);
         user.setPassword(password);
         user.setCreateTime(LocalDateTime.now());
-        Result result = userService.register(user);
-        return Result.success(result);
+        userService.register(user);
+        return Result.success();
     }
 
     /**
