@@ -1,8 +1,6 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.domain.entity.User;
-import com.scs.web.space_soft1841.until.Result;
-import com.sun.org.apache.xpath.internal.objects.XString;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
@@ -91,5 +89,8 @@ public interface UserMapper {
      */
     @Select("SELECT nickname,avatar FROM t_user WHERE mobile = #{mobile}")
     List<User> findQueryMobile(String mobile);
+
+    @Select("SELECT * FROM t_user WHERE user_id = #{userId}")
+    List<User> selectUserAllById(Integer userId);
 
 }

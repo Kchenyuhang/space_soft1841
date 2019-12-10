@@ -188,4 +188,35 @@ public class UserController {
             return Result.success(user1);
         }
     }
+
+    /**
+     * 登陆进去后，根据用户Id查询该用户的所有信息
+     * @param userId
+     * @return
+     */
+    @PostMapping(value = "/selectUser")
+    public Result selectUserById(@RequestParam Integer userId){
+        User user1 = new User();
+        List<User> list = userService.selectUserAllById(userId);
+        if (list.size() == 0) {
+            return Result.failure(ResultCode.USER_SELECT_FAILURE_);
+        } else {
+            for (User  user :list ){
+                user1.setUserId(user.getUserId());
+                user1.setMobile(user.getMobile());
+                user1.setPassword(user.getPassword());
+                user1.setNickname(user.getNickname());
+                user1.setIntroduction(user.getIntroduction());
+                user1.setEmail(user.getEmail());
+                user1.setAvatar(user.getAvatar());
+                user1.setAddress(user.getAddress());
+                user1.setGender(user.getGender());
+                user1.setBirthday(user.getBirthday());
+                user1.setHomepage(user.getHomepage());
+                user1.setCreateTime(user.getCreateTime());
+                user1.setStatus(user.getStatus());
+            }
+            return Result.success(user1);
+        }
+    }
 }

@@ -79,4 +79,11 @@ public interface UserService {
      */
     List<User> findQueryMobile(String mobile);
 
+    /**
+     * 通过用户id查询所有
+     * @param userId
+     * @return
+     */
+    List<User> selectUserAllById(Integer userId);
+
 }

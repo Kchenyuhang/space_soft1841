@@ -84,4 +84,11 @@ class UserServiceTest {
         list = userService.findQueryMobile("13921557438");
         System.out.println(list);
     }
+
+    @Test
+    void selectUserAllById() {
+        List<User> list = new ArrayList<>();
+        list = userService.selectUserAllById(3);
+        System.out.println(list);
+    }
 }

@@ -1,6 +1,7 @@
 package com.scs.web.space_soft1841.service.impl;
 
 import com.scs.web.space_soft1841.domain.entity.User;
+import com.scs.web.space_soft1841.mapper.LogMapper;
 import com.scs.web.space_soft1841.mapper.UserMapper;
 import com.scs.web.space_soft1841.service.UserService;
 import com.scs.web.space_soft1841.until.Md5;
@@ -99,6 +100,13 @@ public class UserServiceImpl implements UserService {
     public List<User> findQueryMobile(String mobile) {
         List<User>  list = new ArrayList<>();
         list = userMapper.findQueryMobile(mobile);
+        return list;
+    }
+
+    @Override
+    public List<User> selectUserAllById(Integer userId) {
+        List<User> list = new ArrayList<>();
+        list = userMapper.selectUserAllById(userId);
         return list;
     }
 

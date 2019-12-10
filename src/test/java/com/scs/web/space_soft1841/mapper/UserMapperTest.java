@@ -81,4 +81,10 @@ class UserMapperTest {
         List<User> list = userMapper.findQueryMobile("13937241160");
         System.out.println(list);
     }
+
+    @Test
+    void selectUserAllById() {
+        List<User> list = userMapper.selectUserAllById(2);
+        System.out.println(list);
+    }
 }
