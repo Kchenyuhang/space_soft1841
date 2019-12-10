@@ -25,4 +25,11 @@ class LogServiceTest {
         List<Map> maps = (List<Map>) result.getData();
         maps.forEach(log -> System.out.println(log));
     }
+
+    @Test
+    void selectBylogId() {
+        Result result = logService.selectBylogId(2);
+        List<Map> maps = (List<Map>) result.getData();
+        maps.forEach(log -> System.out.println(log));
+    }
 }

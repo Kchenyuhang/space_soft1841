@@ -28,4 +28,9 @@ public class LogController {
         System.out.println(page);
         return logService.selectLogByPage(page.getCurrentPage(),page.getPageSize());
     }
+    @PostMapping(value = "/select")
+    public Result selectBylogId(@RequestParam long id){
+        Result result = logService.selectBylogId(id);
+        return result;
+    }
 }

@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class LogMapperTest {
     @Resource
@@ -21,5 +20,11 @@ class LogMapperTest {
     void selectByPage() {
         List<Map> maps = logMapper.selectByPage(1,5);
         maps.forEach(log -> System.out.println(log));
+    }
+
+    @Test
+    void selectBylogId() {
+        List<Map> mapList = logMapper.selectBylogId(2);
+        mapList.forEach(log-> System.out.println(log));
     }
 }

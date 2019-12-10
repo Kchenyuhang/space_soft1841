@@ -33,4 +33,13 @@ public class LogServiceImpl implements LogService {
         }
         return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
     }
+
+    @Override
+    public Result selectBylogId(long id) {
+        List<Map> mapList = logMapper.selectBylogId(id);
+        if (mapList.size()!=0){
+            return Result.success(mapList);
+        }
+        return Result.failure(ResultCode.LOG_SELECT_ERROR);
+    }
 }

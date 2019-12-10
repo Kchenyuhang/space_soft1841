@@ -36,4 +36,13 @@ public interface LogMapper {
             "LEFT JOIN t_user t2 " +
             "ON t1.user_id = t2.user_id ORDER BY log_createTime DESC LIMIT ${pageSize*(currentPage-1)},#{pageSize}")
     List<Map> selectByPage(int currentPage,int pageSize);
+
+
+    /**
+     * 根据日志表log中的user_id查询到user表中的昵称 和 头像
+     */
+    @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_log t1\n" +
+            "LEFT JOIN t_user t2\n" +
+            "ON t1.user_id = t2.user_id WHERE t1.user_id = #{userId}")
+    List<Map> selectBylogId(long userId);
 }
