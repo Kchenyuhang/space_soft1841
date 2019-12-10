@@ -27,4 +27,9 @@ class LogMapperTest {
         List<Map> mapList = logMapper.selectBylogId(2);
         mapList.forEach(log-> System.out.println(log));
     }
+
+    @Test
+    void getLogByLogId(){
+        System.out.println(logMapper.getLogByLogId(6));
+    }
 }

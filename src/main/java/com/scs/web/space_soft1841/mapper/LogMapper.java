@@ -1,5 +1,6 @@
 package com.scs.web.space_soft1841.mapper;
 
+import com.scs.web.space_soft1841.domain.entity.Log;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
@@ -45,4 +46,21 @@ public interface LogMapper {
             "LEFT JOIN t_user t2\n" +
             "ON t1.user_id = t2.user_id WHERE t1.user_id = #{userId}")
     List<Map> selectBylogId(long userId);
+
+    /**
+     * 根据logId查询日志
+     * @param logId
+     * @return
+     */
+    @Select("SELECT * FROM t_log WHERE log_id=#{logId}")
+    Log getLogByLogId(int logId);
+
+    /**
+     * 点赞功能的实现，通过log_like=log_like+1
+     * @param logLike
+     * @param logId
+     * @return
+     */
+    @Update("UPDATE t_log SET log_like = #{logLike} WHERE log_id=#{logId}")
+    int updateLogLikeByLogId(int logLike,int logId);
 }

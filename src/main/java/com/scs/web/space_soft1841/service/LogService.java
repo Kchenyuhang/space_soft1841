@@ -25,4 +25,18 @@ public interface LogService {
      * @return
      */
     Result selectBylogId(long id);
+
+    /**
+     * 根据logId查询日志
+     * @param logId
+     * @return
+     */
+    Result getLogByLogId(int logId);
+
+    /**
+     * 点赞功能的实现，通过log_like=log_like+1
+     * @param logId
+     * @return
+     */
+    Result updateLogLikeByLogId(int logId);
 }

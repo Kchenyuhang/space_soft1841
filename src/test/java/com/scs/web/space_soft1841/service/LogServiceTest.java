@@ -32,4 +32,14 @@ class LogServiceTest {
         List<Map> maps = (List<Map>) result.getData();
         maps.forEach(log -> System.out.println(log));
     }
+
+    @Test
+    void getLogByLogId(){
+        System.out.println(logService.getLogByLogId(6));
+    }
+
+    @Test
+    void updateLogLikeByLogId() {
+        System.out.println(logService.updateLogLikeByLogId(6));
+    }
 }

@@ -33,4 +33,8 @@ public class LogController {
         Result result = logService.selectBylogId(id);
         return result;
     }
+    @PostMapping(value = "/updateLike")
+    public Result updateLogLikeByLogId(@RequestParam int logId){
+        return logService.updateLogLikeByLogId(logId);
+    }
 }
