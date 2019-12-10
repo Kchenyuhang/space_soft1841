@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class UserMapperTest {

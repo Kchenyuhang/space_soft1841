@@ -1,6 +1,5 @@
 package com.scs.web.space_soft1841.service.impl;
 
-import com.scs.web.space_soft1841.domain.entity.Log;
 import com.scs.web.space_soft1841.mapper.LogMapper;
 import com.scs.web.space_soft1841.service.LogService;
 import com.scs.web.space_soft1841.until.Result;
@@ -36,20 +35,11 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Result getByLogId(int logId) {
-        Log log = logMapper.getByLogId(logId);
-        if (log!=null){
-            return Result.success(log);
+    public Result selectBylogId(long id) {
+        List<Map> mapList = logMapper.selectBylogId(id);
+        if (mapList.size()!=0){
+            return Result.success(mapList);
         }
         return Result.failure(ResultCode.LOG_SELECT_ERROR);
-    }
-
-    @Override
-    public Result updateLogLikeByLogId(int logId) {
-        int logLike = logMapper.getByLogId(logId).getLogLike();
-        if (logMapper.updateLogLikeByLogId(logLike+1,logId)==1){
-            return Result.success();
-        }
-        return Result.failure(ResultCode.LOG_UPDATE_ERROR);
     }
 }

@@ -20,12 +20,9 @@ public interface LogService {
     Result selectLogByPage(int currentPage,int pageSize);
 
     /**
-     * 根据log_id查询log
-     * @param logId
+     * 根据日志表log中的user_id查询到user表中的昵称 和 头像
+     * @param id
      * @return
      */
-    Result getByLogId(int logId);
-
-    Result updateLogLikeByLogId(int logId);
-
+    Result selectBylogId(long id);
 }

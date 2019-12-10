@@ -25,13 +25,11 @@ class LogServiceTest {
         List<Map> maps = (List<Map>) result.getData();
         maps.forEach(log -> System.out.println(log));
     }
-    @Test
-    void getByLogId() throws SQLException{
-        System.out.println(logService.getByLogId(6));
-    }
 
     @Test
-    void updateLogLikeByLogId() {
-        System.out.println(logService.updateLogLikeByLogId(6));
+    void selectBylogId() {
+        Result result = logService.selectBylogId(2);
+        List<Map> maps = (List<Map>) result.getData();
+        maps.forEach(log -> System.out.println(log));
     }
 }
