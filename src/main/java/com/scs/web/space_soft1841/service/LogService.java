@@ -19,4 +19,13 @@ public interface LogService {
      */
     Result selectLogByPage(int currentPage,int pageSize);
 
+    /**
+     * 根据log_id查询log
+     * @param logId
+     * @return
+     */
+    Result getByLogId(int logId);
+
+    Result updateLogLikeByLogId(int logId);
+
 }

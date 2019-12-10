@@ -65,7 +65,8 @@ public enum ResultCode {
     PERMISSION_NO_ACCESS(70001, "无访问权限"),
 
     /* 日志错误：80001-89999 */
-    LOG_SELECT_ERROR(80001,"日志查询出错");
+    LOG_SELECT_ERROR(80001,"日志查询出错"),
+    LOG_UPDATE_ERROR(80002,"日志查询出错");
 
     private Integer code;
 

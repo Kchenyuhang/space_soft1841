@@ -22,4 +22,10 @@ class LogMapperTest {
         List<Map> maps = logMapper.selectByPage(1,5);
         maps.forEach(log -> System.out.println(log));
     }
+
+    @Test
+    void selectByLogId() {
+        Log log = logMapper.getByLogId(6);
+        System.out.println(log.getLogLike());
+    }
 }

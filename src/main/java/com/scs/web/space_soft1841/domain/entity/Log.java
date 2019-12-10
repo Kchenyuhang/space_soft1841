@@ -1,5 +1,7 @@
 package com.scs.web.space_soft1841.domain.entity;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
 /**
@@ -8,6 +10,7 @@ import java.time.LocalDateTime;
  * @Author yh_chen
  * @Date 2019/12/10
  **/
+@Data
 public class Log {
     private Long logId;
     private Integer userId;

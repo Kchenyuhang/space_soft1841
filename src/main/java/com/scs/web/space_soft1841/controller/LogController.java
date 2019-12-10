@@ -5,6 +5,7 @@ import com.scs.web.space_soft1841.service.LogService;
 import com.scs.web.space_soft1841.service.UserService;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
+import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,5 +28,9 @@ public class LogController {
         //客户端发送json参数 后端使用@RequstBody接收 注意要用Post方法
         System.out.println(page);
         return logService.selectLogByPage(page.getCurrentPage(),page.getPageSize());
+    }
+    @PostMapping(value = "/updateLogLike")
+    Result updateLogLikeByLogId(@RequestParam int logId){
+        return logService.updateLogLikeByLogId(logId);
     }
 }
