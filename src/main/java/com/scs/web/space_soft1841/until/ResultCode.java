@@ -1,5 +1,7 @@
 package com.scs.web.space_soft1841.until;
 
+import com.scs.web.space_soft1841.domain.entity.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +62,10 @@ public enum ResultCode {
     INTERFACE_EXCEED_LOAD(60006, "接口负载过高"),
 
     /* 权限错误：70001-79999 */
-    PERMISSION_NO_ACCESS(70001, "无访问权限");
+    PERMISSION_NO_ACCESS(70001, "无访问权限"),
+
+    /* 日志错误：80001-89999 */
+    LOG_SELECT_ERROR(80001,"日志查询出错");
 
     private Integer code;
 

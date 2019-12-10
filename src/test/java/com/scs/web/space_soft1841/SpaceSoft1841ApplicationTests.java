@@ -16,4 +16,3 @@ class SpaceSoft1841ApplicationTests {
     }
 
 }
-
