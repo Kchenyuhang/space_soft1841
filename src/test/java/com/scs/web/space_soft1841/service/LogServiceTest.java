@@ -2,6 +2,7 @@ package com.scs.web.space_soft1841.service;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
 import com.scs.web.space_soft1841.domain.dto.LogDto;
+import com.scs.web.space_soft1841.mapper.LogMapper;
 import com.scs.web.space_soft1841.until.Result;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class LogServiceTest {
     @Resource
     private LogService logService;
+    @Resource
+    private LogMapper logMapper;
 
     @Test
     void getTopicByPage() throws SQLException {
@@ -36,16 +39,33 @@ class LogServiceTest {
 
     @Test
     void getLogByLogId(){
-        System.out.println(logService.getLogByLogId(6));
+        System.out.println(logService.getLogByLogId(7));
     }
 
     @Test
     void updateLogLikeByLogId() {
-        System.out.println(logService.updateLogLikeByLogId(6));
+        int first = logMapper.getLogByLogId(6).getLogLike();
+        System.out.println(first);
+        System.out.println("更改前："+first);
+        logService.updateLogLikeByLogId(6,2);
+        int second = logMapper.getLogByLogId(6).getLogLike();
+        System.out.println("更改后："+second);
+
     }
 
     @Test
     void isLike() {
         System.out.println(logService.isLike(7,2));
     }
+
+    @Test
+    void deleteLike() {
+        System.out.println(logService.deleteLogLike(2,2));
+    }
+
+    @Test
+    void insertLike() {
+        System.out.println(logService.insertLogLike(6,2));
+    }
+
 }
