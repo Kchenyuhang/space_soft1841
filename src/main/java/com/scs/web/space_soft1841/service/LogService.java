@@ -15,16 +15,25 @@ public interface LogService {
      * 分页查询专题
      * @param currentPage
      * @param pageSize
+     * @param userId
      * @return
      */
-    Result selectLogByPage(int currentPage,int pageSize);
+    Result selectLogByPage(int currentPage,int pageSize,int userId);
+
+    /**
+     * 根据user_id和log_id查询该用户是否喜欢该log
+     * @param logId
+     * @param userId
+     * @return
+     */
+    Result isLike(long logId,int userId);
 
     /**
      * 根据日志表log中的user_id查询到user表中的昵称 和 头像
      * @param id
      * @return
      */
-    Result selectBylogId(long id);
+    Result selectByLogId(long id);
 
     /**
      * 根据logId查询日志

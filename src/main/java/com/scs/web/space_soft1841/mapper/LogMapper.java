@@ -1,5 +1,6 @@
 package com.scs.web.space_soft1841.mapper;
 
+import com.scs.web.space_soft1841.domain.dto.LogDto;
 import com.scs.web.space_soft1841.domain.entity.Log;
 import org.apache.ibatis.annotations.*;
 
@@ -36,7 +37,7 @@ public interface LogMapper {
     @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_log t1 " +
             "LEFT JOIN t_user t2 " +
             "ON t1.user_id = t2.user_id ORDER BY log_createTime DESC LIMIT ${pageSize*(currentPage-1)},#{pageSize}")
-    List<Map> selectByPage(int currentPage,int pageSize);
+    List<LogDto> selectByPage(int currentPage, int pageSize);
 
 
     /**
@@ -54,6 +55,15 @@ public interface LogMapper {
      */
     @Select("SELECT * FROM t_log WHERE log_id=#{logId}")
     Log getLogByLogId(int logId);
+
+    /**
+     * 根据user_id和log_id查询该用户是否喜欢该log
+     * @param logId
+     * @param userId
+     * @return
+     */
+    @Select("SELECT * FROM t_likes WHERE log_id=#{logId} AND user_id=#{userId}")
+    LogDto isLike(Long logId, int userId);
 
     /**
      * 点赞功能的实现，通过log_like=log_like+1

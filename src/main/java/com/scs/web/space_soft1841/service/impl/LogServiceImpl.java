@@ -1,5 +1,6 @@
 package com.scs.web.space_soft1841.service.impl;
 
+import com.scs.web.space_soft1841.domain.dto.LogDto;
 import com.scs.web.space_soft1841.domain.entity.Log;
 import com.scs.web.space_soft1841.mapper.LogMapper;
 import com.scs.web.space_soft1841.service.LogService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,16 +30,47 @@ public class LogServiceImpl implements LogService {
     private LogMapper logMapper;
 
     @Override
-    public Result selectLogByPage(int currentPage,int pageSize){
-        List<Map> maps = logMapper.selectByPage(currentPage,pageSize);
+    public Result selectLogByPage(int currentPage,int pageSize,int userId){
+        List<LogDto> maps = logMapper.selectByPage(currentPage,pageSize);
+        List<LogDto> maps1 = new ArrayList<>();
+
         if (maps!=null){
-            return Result.success(maps);
+            for (int i=0;i<maps.size();i++){
+                LogDto logDto = new LogDto();
+                if (logMapper.isLike(maps.get(i).getLogId(),userId)!=null){
+                    logDto.setIsLike(1);
+                }else {
+                    logDto.setIsLike(0);
+                }
+                logDto.setLogLike(maps.get(i).getLogLike());
+                logDto.setAvatar(maps.get(i).getAvatar());
+                logDto.setLogContent(maps.get(i).getLogContent());
+                logDto.setLogCover(maps.get(i).getLogCover());
+                logDto.setLogCreateTime(maps.get(i).getLogCreateTime());
+                logDto.setUserId(maps.get(i).getUserId());
+                logDto.setLogName(maps.get(i).getLogName());
+                logDto.setNickname(maps.get(i).getNickname());
+                logDto.setLogId(maps.get(i).getLogId());
+                maps1.add(logDto);
+            }
+            return Result.success(maps1);
         }
         return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
     }
 
     @Override
-    public Result selectBylogId(long id) {
+    public Result isLike(long logId, int userId) {
+        LogDto isLike = logMapper.isLike(logId,userId);
+        if (isLike!=null){
+            return Result.success(isLike);
+        }
+        else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+    }
+
+    @Override
+    public Result selectByLogId(long id) {
         List<Map> mapList = logMapper.selectBylogId(id);
         if (mapList.size()!=0){
             return Result.success(mapList);

@@ -26,11 +26,11 @@ public class LogController {
     Result getTopicByPage(@RequestBody Page page){
         //客户端发送json参数 后端使用@RequstBody接收 注意要用Post方法
         System.out.println(page);
-        return logService.selectLogByPage(page.getCurrentPage(),page.getPageSize());
+        return logService.selectLogByPage(page.getCurrentPage(),page.getPageSize(),page.getUserId());
     }
     @PostMapping(value = "/select")
-    public Result selectBylogId(@RequestParam long id){
-        Result result = logService.selectBylogId(id);
+    public Result selectByLogId(@RequestParam long id){
+        Result result = logService.selectByLogId(id);
         return result;
     }
     @PostMapping(value = "/updateLike")

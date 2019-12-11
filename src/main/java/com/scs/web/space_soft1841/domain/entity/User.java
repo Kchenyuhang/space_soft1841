@@ -19,8 +19,8 @@ public class User {
     private Integer userId;
     private String mobile;
     private String password;
-    private String nickname;
     private String email;
+    private String nickname;
     private String avatar;
     private String address;
     private String gender;

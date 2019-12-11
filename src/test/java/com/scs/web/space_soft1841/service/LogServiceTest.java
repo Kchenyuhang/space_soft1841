@@ -1,6 +1,7 @@
 package com.scs.web.space_soft1841.service;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
+import com.scs.web.space_soft1841.domain.dto.LogDto;
 import com.scs.web.space_soft1841.until.Result;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,16 +20,16 @@ class LogServiceTest {
 
     @Test
     void getTopicByPage() throws SQLException {
-        Result result = logService.selectLogByPage(1,5);
+        Result result = logService.selectLogByPage(1,5,2);
         System.out.println(result.getCode());
         System.out.println(result.getMsg());
-        List<Map> maps = (List<Map>) result.getData();
+        List<LogDto> maps = (List<LogDto>) result.getData();
         maps.forEach(log -> System.out.println(log));
     }
 
     @Test
-    void selectBylogId() {
-        Result result = logService.selectBylogId(2);
+    void selectByLogId() {
+        Result result = logService.selectByLogId(2);
         List<Map> maps = (List<Map>) result.getData();
         maps.forEach(log -> System.out.println(log));
     }
@@ -41,5 +42,10 @@ class LogServiceTest {
     @Test
     void updateLogLikeByLogId() {
         System.out.println(logService.updateLogLikeByLogId(6));
+    }
+
+    @Test
+    void isLike() {
+        System.out.println(logService.isLike(7,2));
     }
 }

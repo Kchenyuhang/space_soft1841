@@ -1,6 +1,7 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
+import com.scs.web.space_soft1841.domain.dto.LogDto;
 import com.scs.web.space_soft1841.domain.entity.Log;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,12 +19,12 @@ class LogMapperTest {
 
     @Test
     void selectByPage() {
-        List<Map> maps = logMapper.selectByPage(1,5);
-        maps.forEach(log -> System.out.println(log));
+        List<LogDto> maps = logMapper.selectByPage(1,5);
+        maps.forEach(log -> System.out.println(log.getLogLike()));
     }
 
     @Test
-    void selectBylogId() {
+    void selectByLogId() {
         List<Map> mapList = logMapper.selectBylogId(2);
         mapList.forEach(log-> System.out.println(log));
     }
@@ -31,5 +32,10 @@ class LogMapperTest {
     @Test
     void getLogByLogId(){
         System.out.println(logMapper.getLogByLogId(6));
+    }
+
+    @Test
+    void isLike() {
+        System.out.println(logMapper.isLike(7L,2));
     }
 }

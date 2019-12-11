@@ -16,4 +16,5 @@ import java.io.Serializable;
 public class Page implements Serializable {
     private Integer currentPage;
     private Integer pageSize;
+    private Integer userId;
 }

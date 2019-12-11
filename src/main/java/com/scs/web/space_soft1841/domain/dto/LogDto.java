@@ -14,6 +14,14 @@ import java.time.LocalDateTime;
  **/
 @Data
 public class LogDto {
-    private Log log;
-    private User user;
+    private Long logId;
+    private Integer userId;
+    private String logName;
+    private Integer logLike;
+    private String logCover;
+    private String logContent;
+    private LocalDateTime logCreateTime;
+    private String nickname;
+    private String avatar;
+    private Integer isLike;
 }
