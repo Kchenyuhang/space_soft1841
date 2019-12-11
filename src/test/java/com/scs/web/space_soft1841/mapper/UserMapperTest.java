@@ -72,9 +72,9 @@ class UserMapperTest {
 
     @Test
     void userLogin() {
-        String mobile= "18932386185";
+        String mobile = "18932386185";
         String password = Md5.MD5("111");
-        userMapper.userLogin(mobile,password);
+        userMapper.userLogin(mobile, password);
     }
 
     @Test

@@ -70,10 +70,11 @@ public interface UserService {
      * @param password
      * @return
      */
-    List<User> userLogin(String mobile,String password);
+    List<User> userLogin(String mobile, String password);
 
     /**
      * 登入进去之后 把头像和昵称传过去
+     *
      * @param mobile
      * @return
      */
@@ -81,6 +82,7 @@ public interface UserService {
 
     /**
      * 通过用户id查询所有
+     *
      * @param userId
      * @return
      */

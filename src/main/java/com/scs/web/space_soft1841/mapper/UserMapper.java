@@ -15,6 +15,7 @@ import java.util.List;
 public interface UserMapper {
     /**
      * 密码(password),创建时间(createTime)等新增用户
+     *
      * @param user
      * @throws SQLException
      */
@@ -81,15 +82,21 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM t_user WHERE mobile = #{mobile} AND password=#{password}")
     List<User> userLogin(String mobile, String password);
-    
+
     /**
      * 用户登入进去之后 把昵称和头像带过去。
+     *
      * @param mobile
      * @return
      */
     @Select("SELECT nickname,avatar FROM t_user WHERE mobile = #{mobile}")
     List<User> findQueryMobile(String mobile);
 
+    /**
+     * 根据用户Id查询
+     * @param userId
+     * @return
+     */
     @Select("SELECT * FROM t_user WHERE user_id = #{userId}")
     List<User> selectUserAllById(Integer userId);
 

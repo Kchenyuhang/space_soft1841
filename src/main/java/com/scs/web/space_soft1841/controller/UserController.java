@@ -55,7 +55,7 @@ public class UserController {
     @PostMapping(value = "/verify")
     public Result getVerifyCode(@RequestParam("mobile") String mobile) {
         //判断手机号是否合法
-        if (LegalPhone.isMobiPhoneNum(mobile)){
+        if (LegalPhone.isMobiPhoneNum(mobile)) {
             //手机号已经被注册
             if (userService.findUserByMobile(mobile)) {
                 return Result.failure(ResultCode.USER_MOBILE_EXIST_);
@@ -90,27 +90,28 @@ public class UserController {
     public Result checkVerifyCode(@RequestParam("mobile") String mobile, @RequestParam("verifyCode") String verifyCode) {
         //从Redis中取出这个手机号的验证码
         //和客户端传过来的验证码比对
-        if (hash.get(mobile)!=null){
+        if (hash.get(mobile) != null) {
             if (hash.get(mobile).equals(verifyCode)) {
                 hash.remove(mobile);
                 return Result.success();
             } else {
-                phone="";
+                phone = "";
                 return Result.failure(ResultCode.USER_VERIFYCODE_ERROR_);
             }
-        }else {
+        } else {
             return Result.failure(ResultCode.USER_CODE_NONSEXIST);
         }
     }
 
     /**
      * 用户注册
+     *
      * @param mobile
      * @param password
      * @return
      */
     @PostMapping(value = "/register")
-    public Result register(@RequestParam("mobile") String mobile,@RequestParam("password")String password){
+    public Result register(@RequestParam("mobile") String mobile, @RequestParam("password") String password) {
         User user = new User();
         user.setMobile(mobile);
         user.setPassword(password);
@@ -143,11 +144,11 @@ public class UserController {
         User user1 = new User();
         List<User> list = userService.userLogin(mobile, password);
         List<User> existList = userService.findQueryMobile(mobile);
-        if (existList.size()==0){
+        if (existList.size() == 0) {
             return Result.failure(ResultCode.USER_NOT_EXIST);
-        }else {
-            if (list.size()!=0){
-                for (User  user :list ){
+        } else {
+            if (list.size() != 0) {
+                for (User user : list) {
                     user1.setUserId(user.getUserId());
                     user1.setMobile(user.getMobile());
                     user1.setPassword(user.getPassword());
@@ -163,7 +164,7 @@ public class UserController {
                     user1.setStatus(user.getStatus());
                 }
                 return Result.success(user1);
-            }else {
+            } else {
                 return Result.failure(ResultCode.USER_LOGINPASSWORD_ERROR);
             }
         }
@@ -171,17 +172,18 @@ public class UserController {
 
     /**
      * 用户登入进去之后 得到昵称和头像
+     *
      * @param mobile
      * @return user
      */
     @PostMapping(value = "/findQuery")
-    public Result findQuery(@RequestParam String mobile){
-        User user1 =new User();
+    public Result findQuery(@RequestParam String mobile) {
+        User user1 = new User();
         List<User> list1 = userService.findQueryMobile(mobile);
-        if (list1.size()==0){
+        if (list1.size() == 0) {
             return Result.failure(ResultCode.USER_SELECT_FAILURE_);
         } else {
-            for (User user:list1){
+            for (User user : list1) {
                 user1.setNickname(user.getNickname());
                 user1.setAvatar(user.getAvatar());
             }
@@ -191,17 +193,18 @@ public class UserController {
 
     /**
      * 登陆进去后，根据用户Id查询该用户的所有信息
+     *
      * @param userId
      * @return
      */
     @PostMapping(value = "/selectUser")
-    public Result selectUserById(@RequestParam Integer userId){
+    public Result selectUserById(@RequestParam Integer userId) {
         User user1 = new User();
         List<User> list = userService.selectUserAllById(userId);
         if (list.size() == 0) {
             return Result.failure(ResultCode.USER_SELECT_FAILURE_);
         } else {
-            for (User  user :list ){
+            for (User user : list) {
                 user1.setUserId(user.getUserId());
                 user1.setMobile(user.getMobile());
                 user1.setPassword(user.getPassword());
