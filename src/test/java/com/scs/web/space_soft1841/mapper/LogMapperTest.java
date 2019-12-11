@@ -18,18 +18,18 @@ class LogMapperTest {
 
     @Test
     void selectByPage() {
-        List<Map> maps = logMapper.selectByPage(1,5);
+        List<Map> maps = logMapper.selectByPage(1, 5);
         maps.forEach(log -> System.out.println(log));
     }
 
     @Test
-    void selectBylogId() {
-        List<Map> mapList = logMapper.selectBylogId(2);
-        mapList.forEach(log-> System.out.println(log));
+    void selectByLogId() {
+        List<Map> mapList = logMapper.selectByLogId(2);
+        mapList.forEach(log -> System.out.println(log));
     }
 
     @Test
-    void getLogByLogId(){
+    void getLogByLogId() {
         System.out.println(logMapper.getLogByLogId(6));
     }
 }

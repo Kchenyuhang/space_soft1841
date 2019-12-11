@@ -28,18 +28,18 @@ public class LogServiceImpl implements LogService {
     private LogMapper logMapper;
 
     @Override
-    public Result selectLogByPage(int currentPage,int pageSize){
-        List<Map> maps = logMapper.selectByPage(currentPage,pageSize);
-        if (maps!=null){
+    public Result selectLogByPage(int currentPage, int pageSize) {
+        List<Map> maps = logMapper.selectByPage(currentPage, pageSize);
+        if (maps != null) {
             return Result.success(maps);
         }
         return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
     }
 
     @Override
-    public Result selectBylogId(long id) {
-        List<Map> mapList = logMapper.selectBylogId(id);
-        if (mapList.size()!=0){
+    public Result selectByLogId(long id) {
+        List<Map> mapList = logMapper.selectByLogId(id);
+        if (mapList.size() != 0) {
             return Result.success(mapList);
         }
         return Result.failure(ResultCode.LOG_SELECT_ERROR);
@@ -48,7 +48,7 @@ public class LogServiceImpl implements LogService {
     @Override
     public Result getLogByLogId(int logId) {
         Log log = logMapper.getLogByLogId(logId);
-        if (log!=null){
+        if (log != null) {
             return Result.success(log);
         }
         return Result.failure(ResultCode.LOG_SELECT_ERROR);
@@ -57,8 +57,8 @@ public class LogServiceImpl implements LogService {
     @Override
     public Result updateLogLikeByLogId(int logId) {
         int logLike = logMapper.getLogByLogId(logId).getLogLike();
-        int a  = logMapper.updateLogLikeByLogId(logLike+1,logId);
-        if (a==1){
+        int a = logMapper.updateLogLikeByLogId(logLike + 1, logId);
+        if (a == 1) {
             return Result.success();
         }
         return Result.failure(ResultCode.LOG_UPDATE_ERROR);

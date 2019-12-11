@@ -37,7 +37,7 @@ class UserServiceTest {
 
     @Test
     void findUserByMobile() {
-        boolean a =userService.findUserByMobile("13013947768");
+        boolean a = userService.findUserByMobile("13013947768");
         System.out.println(a);
     }
 
@@ -60,13 +60,13 @@ class UserServiceTest {
 
     @Test
     void confirmRelationByMobile() {
-        boolean result =  userService.confirmRelationByMobile("13937241160","13921557438");
+        boolean result = userService.confirmRelationByMobile("13937241160", "13921557438");
         System.out.println(result);
     }
 
     @Test
     void deleteRelationByMobile() {
-        Result result = userService.deleteRelationByMobile("13937241160","13921557438");
+        Result result = userService.deleteRelationByMobile("13937241160", "13921557438");
         System.out.println(result);
     }
 
@@ -74,7 +74,7 @@ class UserServiceTest {
     void userLogin() {
         String mobile = "18932386185";
         String password = "222";
-        List<User> userList = userService.userLogin(mobile,password);
+        List<User> userList = userService.userLogin(mobile, password);
         System.out.println(userList);
     }
 

@@ -92,13 +92,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> userLogin(String mobile,String password) {
+    public List<User> userLogin(String mobile, String password) {
         return userMapper.userLogin(mobile, Md5.MD5(password));
     }
 
     @Override
     public List<User> findQueryMobile(String mobile) {
-        List<User>  list = new ArrayList<>();
+        List<User> list = new ArrayList<>();
         list = userMapper.findQueryMobile(mobile);
         return list;
     }

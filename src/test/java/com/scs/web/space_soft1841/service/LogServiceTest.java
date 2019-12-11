@@ -19,7 +19,7 @@ class LogServiceTest {
 
     @Test
     void getTopicByPage() throws SQLException {
-        Result result = logService.selectLogByPage(1,5);
+        Result result = logService.selectLogByPage(1, 5);
         System.out.println(result.getCode());
         System.out.println(result.getMsg());
         List<Map> maps = (List<Map>) result.getData();
@@ -27,14 +27,14 @@ class LogServiceTest {
     }
 
     @Test
-    void selectBylogId() {
-        Result result = logService.selectBylogId(2);
+    void selectByLogId() {
+        Result result = logService.selectByLogId(2);
         List<Map> maps = (List<Map>) result.getData();
         maps.forEach(log -> System.out.println(log));
     }
 
     @Test
-    void getLogByLogId(){
+    void getLogByLogId() {
         System.out.println(logService.getLogByLogId(6));
     }
 
