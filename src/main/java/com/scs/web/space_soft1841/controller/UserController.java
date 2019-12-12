@@ -40,7 +40,7 @@ public class UserController {
      * @param mobile
      * @return
      */
-    @DeleteMapping(value = "/deleteUser")
+    @PostMapping(value = "/deleteUser")
     public Result deleteUserByMobile(@RequestParam String mobile) {
         Result result = userService.deleteByMobile(mobile);
         return result;
@@ -126,7 +126,7 @@ public class UserController {
      * @param user
      * @return user
      */
-    @GetMapping(value = "/updateUser")
+    @GetMapping(value = "/update/user")
     public Result updateUserMessage(@RequestBody User user) {
         Result result = userService.updateUser(user);
         return result;
