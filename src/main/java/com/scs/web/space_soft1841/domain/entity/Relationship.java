@@ -10,7 +10,10 @@ import lombok.Data;
  **/
 @Data
 public class Relationship {
-    private Long relationshipId;
-    private String mobile1;
-    private String mobile2;
+    private Long id;
+    private String reqMobile;
+    private String resMobile;
+    private Integer status;
+    private String mobile;
+    private String nickname;
 }
