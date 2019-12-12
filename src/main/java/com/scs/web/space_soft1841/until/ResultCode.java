@@ -41,6 +41,14 @@ public enum ResultCode {
     USER_MOBILE_ERROR(20016,"手机号格式错误"),
     USER_CODE_NONSEXIST(20017,"验证码未发送或已经失效"),
     USER_UPDATE_AVATAR_FAILURE(20017,"用户头像更新失败"),
+    RELATIONSHIP_UPDATE_STATUS(20018,"处理好友请求失败"),
+    DELETE_RELATIONSHIP(20019,"删除好友关系失败"),
+    CONFIRM_FRIEND_SUCCESS(20020,"已添加为好友"),
+    REQUEST_FRIEND(20021,"已发送好友请求,对方未同意"),
+    CONFIRM_FRIEND_NOT_ADD(20022,"未添加好友"),
+    REQUEST_FRIEND_SUCCESS(20023,"发送好友请求成功"),
+    REQUEST_FRIEND_FAILURE(20024,"发送好友请求失败"),
+
 
 
     /* 业务错误：30001-39999 */

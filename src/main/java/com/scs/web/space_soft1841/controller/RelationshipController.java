@@ -21,6 +21,18 @@ public class RelationshipController {
     @Resource
     private RelationShipService relationShipService;
 
+    @PostMapping(value = "/search")
+    public Result confirmFriend(@RequestParam String reqMobile,String resMobile){
+        Result result = relationShipService.confirmFriend(reqMobile,resMobile);
+        return result;
+    }
+
+    @PostMapping(value = "/request")
+    public Result requestFriend(@RequestParam String reqMobile,String resMobile) {
+        Result result = relationShipService.requestFriend(reqMobile, resMobile);
+        return result;
+    }
+
     @PostMapping(value = "/status")
     public Result updateStatue(@RequestParam String reqMobile,String resMobile){
         Result result = relationShipService.updateStatus(reqMobile, resMobile);
