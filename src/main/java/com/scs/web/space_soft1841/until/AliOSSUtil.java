@@ -1,13 +1,13 @@
 package com.scs.web.space_soft1841.until;
 
-
 import com.aliyun.oss.OSSClient;
-
 import java.io.File;
 import java.util.UUID;
 
 /**
- * 阿里云OOS测试程序
+ * @ClassName AliOSSUtil
+ * @Description TODO
+ * @author yu_chen
  */
 public class AliOSSUtil {
     /**
@@ -18,9 +18,9 @@ public class AliOSSUtil {
      */
     public static String upload(File file) {
         String endpoint = "https://oss-cn-hangzhou.aliyuncs.com";
-        String accessKeyId = "LTAIJF6wLhIIsqOO";
-        String accessKeySecret = "SWi5Xp34hpFv9CZoa0yrbLSrJmFarl";
-        String bucketName = "niit-soft";
+        String accessKeyId = "LTAI41PGLwQKBcVF";
+        String accessKeySecret = "DBUGgiRLZqycwd6i4I5XfmeI47IpcB";
+        String bucketName = "student-manage99";
         String filePath = "avatar/";
         String fileName = file.getName();
         String newFileName = UUID.randomUUID().toString() + fileName.substring(fileName.indexOf("."));
@@ -29,7 +29,7 @@ public class AliOSSUtil {
         // 上传文件到指定位置，并使用UUID更名
         ossClient.putObject(bucketName, filePath + newFileName, file);
         // 拼接URL
-        String url = "https://niit-soft.oss-cn-hangzhou.aliyuncs.com/" + filePath + newFileName;
+        String url = "https://student-manage99.oss-cn-hangzhou.aliyuncs.com/" + filePath + newFileName;
         ossClient.shutdown();
         return url;
     }

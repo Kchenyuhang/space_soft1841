@@ -14,5 +14,4 @@ class SpaceSoft1841ApplicationTests {
     void contextLoads() {
         System.out.println(this.dataSource);
     }
-
 }
