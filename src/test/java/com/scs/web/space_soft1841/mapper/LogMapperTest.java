@@ -48,4 +48,6 @@ class LogMapperTest {
     void updateLike() {
         logMapper.updateLogLikeByLogId(6,2);
     }
+
+
 }

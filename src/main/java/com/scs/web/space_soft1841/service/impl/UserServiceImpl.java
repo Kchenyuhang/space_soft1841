@@ -4,6 +4,7 @@ import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.mapper.LogMapper;
 import com.scs.web.space_soft1841.mapper.UserMapper;
 import com.scs.web.space_soft1841.service.UserService;
+import com.scs.web.space_soft1841.until.AliOSSUtil;
 import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +110,18 @@ public class UserServiceImpl implements UserService {
         List<User> list = new ArrayList<>();
         list = userMapper.selectUserAllById(userId);
         return list;
+    }
+
+    @Override
+    public Result updateAvatarByUserId(String avatar, int userId) {
+        String url = AliOSSUtil.avatarUpload(new File(avatar));
+        int n = userMapper.updateAvatarByUserId(url,userId);
+        User user = new User();
+        user.setAvatar(url);
+        if (n==1){
+            return Result.success(user);
+        }
+        return Result.failure(ResultCode.USER_UPDATE_AVATAR_FAILURE);
     }
 
 }

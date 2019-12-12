@@ -40,6 +40,7 @@ public enum ResultCode {
     USER_LOGINPASSWORD_ERROR(20015,"密码错误"),
     USER_MOBILE_ERROR(20016,"手机号格式错误"),
     USER_CODE_NONSEXIST(20017,"验证码未发送或已经失效"),
+    USER_UPDATE_AVATAR_FAILURE(20017,"用户头像更新失败"),
 
 
     /* 业务错误：30001-39999 */

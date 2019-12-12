@@ -132,6 +132,11 @@ public class UserController {
         return result;
     }
 
+    @PostMapping(value = "/update/avatar")
+    public Result updateUserAvatar(@RequestParam String url ,int userId){
+        return userService.updateAvatarByUserId(url,userId);
+    }
+
     /**
      * 用户登录
      *
