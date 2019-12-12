@@ -40,7 +40,7 @@ public class UserController {
      * @param mobile
      * @return
      */
-    @PostMapping(value = "/deleteUser")
+    @DeleteMapping(value = "/deleteUser")
     public Result deleteUserByMobile(@RequestParam String mobile) {
         Result result = userService.deleteByMobile(mobile);
         return result;
