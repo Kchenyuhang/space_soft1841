@@ -1,6 +1,7 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
+import com.scs.web.space_soft1841.until.AliOSSUtil;
 import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -87,5 +89,11 @@ class UserMapperTest {
     void selectUserAllById() {
         List<User> list = userMapper.selectUserAllById(2);
         System.out.println(list);
+    }
+
+    @Test
+    void updateAvatarByUserId() {
+        String url = AliOSSUtil.avatarUpload(new File("D:/testImg/1.png"));
+        userMapper.updateAvatarByUserId(url,2);
     }
 }

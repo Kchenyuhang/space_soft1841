@@ -40,12 +40,29 @@ public interface LogService {
      * @param logId
      * @return
      */
-    Result getLogByLogId(int logId);
+    Result getLogByLogId(long logId);
 
     /**
      * 点赞功能的实现，通过log_like=log_like+1
      * @param logId
+     * @param userId
      * @return
      */
-    Result updateLogLikeByLogId(int logId);
+    Result updateLogLikeByLogId(long logId,int userId);
+
+    /**
+     * 点赞功能的实现，通过userId和logId删除t_likes中的数据
+     * @param userId
+     * @param logId
+     * @return
+     */
+    Result deleteLogLike(int userId,long logId);
+
+    /**
+     * 点赞功能的实现，通过userId和logId增加t_likes中的数据
+     * @param userId
+     * @param logId
+     * @return
+     */
+    Result insertLogLike(int userId,long logId);
 }

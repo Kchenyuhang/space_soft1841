@@ -16,12 +16,12 @@ import java.util.Map;
  * @Date 2019/12/10
  **/
 public interface LogMapper {
-    /**
-     *根据文章创建时间降序查询
+
+    /**根据文章创建时间降序查询
      * @param currentPage
      * @param pageSize
-     * @return List<Map>
-     * @throws SQLException
+     * @param uerId
+     * @return
      */
     @Results(id = "log",value = {
             @Result(property = "logId",column = "log_id"),
@@ -37,16 +37,18 @@ public interface LogMapper {
     @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_log t1 " +
             "LEFT JOIN t_user t2 " +
             "ON t1.user_id = t2.user_id ORDER BY log_createTime DESC LIMIT ${pageSize*(currentPage-1)},#{pageSize}")
-    List<LogDto> selectByPage(int currentPage, int pageSize);
+    List<LogDto> selectByPage(int currentPage, int pageSize,int uerId);
 
 
     /**
      * 根据日志表log中的user_id查询到user表中的昵称 和 头像
+     * @param userId
+     * @return
      */
     @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_log t1\n" +
             "LEFT JOIN t_user t2\n" +
             "ON t1.user_id = t2.user_id WHERE t1.user_id = #{userId}")
-    List<Map> selectBylogId(long userId);
+    List<Map> selectByLogId(long userId);
 
     /**
      * 根据logId查询日志
@@ -54,7 +56,7 @@ public interface LogMapper {
      * @return
      */
     @Select("SELECT * FROM t_log WHERE log_id=#{logId}")
-    Log getLogByLogId(int logId);
+    Log getLogByLogId(long logId);
 
     /**
      * 根据user_id和log_id查询该用户是否喜欢该log
@@ -63,7 +65,7 @@ public interface LogMapper {
      * @return
      */
     @Select("SELECT * FROM t_likes WHERE log_id=#{logId} AND user_id=#{userId}")
-    LogDto isLike(Long logId, int userId);
+    LogDto isLike(long logId, int userId);
 
     /**
      * 点赞功能的实现，通过log_like=log_like+1
@@ -72,5 +74,23 @@ public interface LogMapper {
      * @return
      */
     @Update("UPDATE t_log SET log_like = #{logLike} WHERE log_id=#{logId}")
-    int updateLogLikeByLogId(int logLike,int logId);
+    int updateLogLikeByLogId(int logLike,long logId);
+
+    /**
+     * 点赞功能的实现，通过userId和logId删除t_likes中的数据
+     * @param userId
+     * @param logId
+     * @return
+     */
+    @Delete("DELETE FROM t_likes WHERE user_id=#{userId} AND log_id=#{logId}")
+    int deleteLogLike(int userId,long logId);
+
+    /**
+     * 点赞功能的实现，通过userId和logId增加t_likes中的数据
+     * @param userId
+     * @param logId
+     * @return
+     */
+    @Insert("INSERT INTO t_likes (user_id,log_id) VALUES (#{userId},#{logId})")
+    int insertLogLike(int userId,long logId);
 }

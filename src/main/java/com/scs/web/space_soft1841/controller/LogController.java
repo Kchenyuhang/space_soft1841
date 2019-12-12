@@ -23,18 +23,21 @@ public class LogController {
     private LogService logService;
 
     @PostMapping(value = "/page")
-    Result getTopicByPage(@RequestBody Page page){
+    Result getTopicByPage(@RequestBody Page page) {
         //客户端发送json参数 后端使用@RequstBody接收 注意要用Post方法
         System.out.println(page);
         return logService.selectLogByPage(page.getCurrentPage(),page.getPageSize(),page.getUserId());
     }
+
     @PostMapping(value = "/select")
-    public Result selectByLogId(@RequestParam long id){
+
+    public Result selectByLogId(@RequestParam long id) {
         Result result = logService.selectByLogId(id);
         return result;
     }
+
     @PostMapping(value = "/updateLike")
-    public Result updateLogLikeByLogId(@RequestParam int logId){
-        return logService.updateLogLikeByLogId(logId);
+    public Result updateLogLikeByLogId(@RequestParam long logId,int userId) {
+        return logService.updateLogLikeByLogId(logId,userId);
     }
 }

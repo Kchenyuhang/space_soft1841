@@ -28,10 +28,12 @@ public class LogServiceImpl implements LogService {
     private Logger logger = LoggerFactory.getLogger(LogServiceImpl.class);
     @Resource
     private LogMapper logMapper;
+    @Resource
+    private LogService logService;
 
     @Override
     public Result selectLogByPage(int currentPage,int pageSize,int userId){
-        List<LogDto> maps = logMapper.selectByPage(currentPage,pageSize);
+        List<LogDto> maps = logMapper.selectByPage(currentPage,pageSize,userId);
         List<LogDto> maps1 = new ArrayList<>();
 
         if (maps!=null){
@@ -71,7 +73,7 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public Result selectByLogId(long id) {
-        List<Map> mapList = logMapper.selectBylogId(id);
+        List<Map> mapList = logMapper.selectByLogId(id);
         if (mapList.size()!=0){
             return Result.success(mapList);
         }
@@ -79,7 +81,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Result getLogByLogId(int logId) {
+    public Result getLogByLogId(long logId) {
         Log log = logMapper.getLogByLogId(logId);
         if (log!=null){
             return Result.success(log);
@@ -88,12 +90,51 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Result updateLogLikeByLogId(int logId) {
+    public Result updateLogLikeByLogId(long logId,int userId) {
         int logLike = logMapper.getLogByLogId(logId).getLogLike();
-        int a  = logMapper.updateLogLikeByLogId(logLike+1,logId);
-        if (a==1){
-            return Result.success();
+        if (logService.isLike(logId,userId).getData()==null){
+            int a  = logMapper.insertLogLike(userId,logId);
+            if (a==1){
+                logMapper.updateLogLikeByLogId(logLike+1,logId);
+                return Result.success();
+            }
         }
+        else if (logService.isLike(logId,userId).getData()!=null){
+            int b = logMapper.deleteLogLike(userId,logId);
+            if (b==1){
+                logMapper.updateLogLikeByLogId(logLike-1,logId);
+                return Result.success();
+            }
+        }
+
         return Result.failure(ResultCode.LOG_UPDATE_ERROR);
+    }
+
+    @Override
+    public Result deleteLogLike(int userId, long logId) {
+        if (logMapper.isLike(logId,userId)!=null){
+            int delete = logMapper.deleteLogLike(userId,logId);
+            if (delete==1){
+                return Result.success();
+            }
+            else {
+                return Result.failure(ResultCode.LOG_DELETE_ERROR);
+            }
+        }
+        return Result.failure(ResultCode.LOG_DELETE_ERROR);
+
+    }
+
+    @Override
+    public Result insertLogLike(int userId, long logId) {
+        if (logMapper.isLike(logId,userId)==null){
+            int insert = logMapper.insertLogLike(userId,logId);
+            if (insert==1){
+                return Result.success();
+            }else {
+                return Result.failure(ResultCode.LOG_INSERT_ERROR);
+            }
+        }
+        return Result.failure(ResultCode.LOG_INSERT_ERROR);
     }
 }

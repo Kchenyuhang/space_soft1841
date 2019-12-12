@@ -88,4 +88,14 @@ public interface UserService {
      */
     List<User> selectUserAllById(Integer userId);
 
+    /**
+     * 更改用户头像，头像地址为本地图片上传到阿里云返回的的地址
+     * @param avatar
+     * @param userId
+     * @return
+     */
+    Result updateAvatarByUserId(String avatar,int userId);
+
+
+
 }

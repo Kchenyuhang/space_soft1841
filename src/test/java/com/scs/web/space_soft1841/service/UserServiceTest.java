@@ -1,6 +1,7 @@
 package com.scs.web.space_soft1841.service;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
+import com.scs.web.space_soft1841.until.AliOSSUtil;
 import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
+import java.io.File;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -90,5 +92,11 @@ class UserServiceTest {
         List<User> list = new ArrayList<>();
         list = userService.selectUserAllById(3);
         System.out.println(list);
+    }
+
+    @Test
+    void updateAvatarByUserId() {
+        Result result = userService.updateAvatarByUserId("D:/testImg/1.png",2);
+        System.out.println(result);
     }
 }
