@@ -66,7 +66,9 @@ public enum ResultCode {
 
     /* 日志错误：80001-89999 */
     LOG_SELECT_ERROR(80001,"日志查询出错"),
-    LOG_UPDATE_ERROR(80002,"日志查询出错");
+    LOG_UPDATE_ERROR(80002,"日志更新出错"),
+    LOG_DELETE_ERROR(80003,"日志喜欢删除出错，无喜欢"),
+    LOG_INSERT_ERROR(80003,"日志喜欢增加出错，已喜欢");
 
     private Integer code;
 

@@ -19,13 +19,13 @@ class LogMapperTest {
 
     @Test
     void selectByPage() {
-        List<LogDto> maps = logMapper.selectByPage(1,5);
+        List<LogDto> maps = logMapper.selectByPage(1,5,2);
         maps.forEach(log -> System.out.println(log.getLogLike()));
     }
 
     @Test
     void selectByLogId() {
-        List<Map> mapList = logMapper.selectBylogId(2);
+        List<Map> mapList = logMapper.selectByLogId(2);
         mapList.forEach(log-> System.out.println(log));
     }
 
@@ -37,5 +37,15 @@ class LogMapperTest {
     @Test
     void isLike() {
         System.out.println(logMapper.isLike(7L,2));
+    }
+
+    @Test
+    void insertLike(){
+        System.out.println(logMapper.insertLogLike(6,2));
+    }
+
+    @Test
+    void updateLike() {
+        logMapper.updateLogLikeByLogId(6,2);
     }
 }
