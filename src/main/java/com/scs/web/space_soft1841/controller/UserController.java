@@ -66,7 +66,7 @@ public class UserController {
                 phone = mobile;
                 try {
                     hash.put(mobile, code);
-                    Thread.sleep(5000);
+                    Thread.sleep(300000);
                     hash.remove(mobile);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
