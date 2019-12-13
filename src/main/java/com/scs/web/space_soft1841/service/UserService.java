@@ -2,6 +2,7 @@ package com.scs.web.space_soft1841.service;
 
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -98,12 +99,10 @@ public interface UserService {
 
     /**
      * 更改用户头像，头像地址为本地图片上传到阿里云返回的的地址
-     * @param avatar
+     * @param file
      * @param userId
      * @return
      */
-    Result updateAvatarByUserId(String avatar,int userId);
-
-
+    Result updateAvatarByUserId(MultipartFile file, int userId);
 
 }

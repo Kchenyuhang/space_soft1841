@@ -11,6 +11,7 @@ import com.scs.web.space_soft1841.until.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -123,8 +124,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result updateAvatarByUserId(String avatar, int userId) {
-        String url = AliOSSUtil.avatarUpload(new File(avatar));
+    public Result updateAvatarByUserId(MultipartFile file, int userId) {
+        String url = (String) AliOSSUtil.upload(file).getData();
         int n = userMapper.updateAvatarByUserId(url,userId);
         User user = new User();
         user.setAvatar(url);

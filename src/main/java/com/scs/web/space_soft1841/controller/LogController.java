@@ -57,6 +57,12 @@ public class LogController {
         return logService.updateLogLikeByLogId(logId, userId);
     }
 
+    /**
+     * 根据logId和userId删除日志
+     * @param logId
+     * @param userId
+     * @return
+     */
     @PostMapping(value = "/delete")
     public Result deleteLog(@RequestParam long logId,int userId){
         Result result = logService.deleteLog(logId,userId);

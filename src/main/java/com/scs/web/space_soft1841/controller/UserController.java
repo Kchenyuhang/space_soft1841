@@ -10,6 +10,7 @@ import com.scs.web.space_soft1841.until.ResultCode;
 import com.scs.web.space_soft1841.until.SMSUtil;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -132,9 +133,15 @@ public class UserController {
         return result;
     }
 
+    /**
+     * 用户头像更新
+     * @param file
+     * @param userId
+     * @return
+     */
     @PostMapping(value = "/update/avatar")
-    public Result updateUserAvatar(@RequestParam String url ,int userId){
-        return userService.updateAvatarByUserId(url,userId);
+    public Result updateUserAvatar(@RequestParam MultipartFile file , int userId){
+        return userService.updateAvatarByUserId(file,userId);
     }
 
     /**

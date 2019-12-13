@@ -80,7 +80,10 @@ public enum ResultCode {
     LOG_UPDATE_ERROR(80002,"日志更新出错"),
     LOG_DELETE_ERROR(80003,"日志喜欢删除出错，无喜欢"),
     LOG_INSERT_ERROR(80003,"日志喜欢增加出错，已喜欢"),
-    LOG_DELETE_FAILURE(80004,"日志删除失败");
+    LOG_DELETE_FAILURE(80004,"日志删除失败"),
+
+    /* 文件上传错误 */
+    FILE_NOT_EXIST(90001,"文件未找到");
 
     private Integer code;
 
