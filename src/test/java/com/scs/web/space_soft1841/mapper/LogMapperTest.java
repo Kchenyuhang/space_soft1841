@@ -49,5 +49,9 @@ class LogMapperTest {
         logMapper.updateLogLikeByLogId(6,2);
     }
 
+    @Test
+    void deleteLog() {
+        System.out.println(logMapper.deleteLog(6, 5));
+    }
 
 }

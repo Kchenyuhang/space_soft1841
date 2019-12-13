@@ -137,4 +137,13 @@ public class LogServiceImpl implements LogService {
         }
         return Result.failure(ResultCode.LOG_INSERT_ERROR);
     }
+
+    @Override
+    public Result deleteLog(long logId, int userId) {
+        int n = logMapper.deleteLog(logId, userId);
+        if (n == 1) {
+            return Result.success();
+        }
+        return Result.failure(ResultCode.LOG_DELETE_FAILURE);
+    }
 }

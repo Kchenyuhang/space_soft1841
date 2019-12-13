@@ -93,4 +93,14 @@ public interface LogMapper {
      */
     @Insert("INSERT INTO t_likes (user_id,log_id) VALUES (#{userId},#{logId})")
     int insertLogLike(int userId,long logId);
+
+    /**
+     * 根据日志id和用户id 来删除日志表中的日志
+     *
+     * @param logId
+     * @param userId
+     * @return
+     */
+    @Delete("DELETE FROM t_log WHERE log_id = #{logId} AND user_id = #{userId}")
+    int deleteLog(long logId, int userId);
 }

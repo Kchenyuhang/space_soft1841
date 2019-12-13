@@ -68,4 +68,8 @@ class LogServiceTest {
         System.out.println(logService.insertLogLike(6,2));
     }
 
+    @Test
+    void deleteLog() {
+        System.out.println(logService.deleteLog(26,2));
+    }
 }

@@ -22,22 +22,44 @@ public class LogController {
     @Resource
     private LogService logService;
 
+    /**
+     * 分页获取日志
+     *
+     * @param page
+     * @return
+     */
     @PostMapping(value = "/page")
-    Result getTopicByPage(@RequestBody Page page) {
+    public Result getTopicByPage(@RequestBody Page page) {
         //客户端发送json参数 后端使用@RequstBody接收 注意要用Post方法
         System.out.println(page);
-        return logService.selectLogByPage(page.getCurrentPage(),page.getPageSize(),page.getUserId());
+        return logService.selectLogByPage(page.getCurrentPage(), page.getPageSize(), page.getUserId());
     }
 
+    /**
+     * 根据logId查询日志
+     * @param id
+     * @return
+     */
     @PostMapping(value = "/select")
-
     public Result selectByLogId(@RequestParam long id) {
         Result result = logService.selectByLogId(id);
         return result;
     }
 
+    /**
+     * 更新喜欢数
+     * @param logId
+     * @param userId
+     * @return
+     */
     @PostMapping(value = "/updateLike")
-    public Result updateLogLikeByLogId(@RequestParam long logId,int userId) {
-        return logService.updateLogLikeByLogId(logId,userId);
+    public Result updateLogLikeByLogId(@RequestParam long logId, int userId) {
+        return logService.updateLogLikeByLogId(logId, userId);
+    }
+
+    @PostMapping(value = "/delete")
+    public Result deleteLog(@RequestParam long logId,int userId){
+        Result result = logService.deleteLog(logId,userId);
+        return result;
     }
 }

@@ -48,6 +48,8 @@ public enum ResultCode {
     CONFIRM_FRIEND_NOT_ADD(20022,"未添加好友"),
     REQUEST_FRIEND_SUCCESS(20023,"发送好友请求成功"),
     REQUEST_FRIEND_FAILURE(20024,"发送好友请求失败"),
+    UPDATE_PASSWORD_FAILURE(20025,"修改密码失败"),
+    UPDATE_MOBILE_FAILURE(20026,"修改手机号失败"),
 
 
 
@@ -77,7 +79,8 @@ public enum ResultCode {
     LOG_SELECT_ERROR(80001,"日志查询出错"),
     LOG_UPDATE_ERROR(80002,"日志更新出错"),
     LOG_DELETE_ERROR(80003,"日志喜欢删除出错，无喜欢"),
-    LOG_INSERT_ERROR(80003,"日志喜欢增加出错，已喜欢");
+    LOG_INSERT_ERROR(80003,"日志喜欢增加出错，已喜欢"),
+    LOG_DELETE_FAILURE(80004,"日志删除失败");
 
     private Integer code;
 
