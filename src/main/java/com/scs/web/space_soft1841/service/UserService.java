@@ -46,6 +46,14 @@ public interface UserService {
     Result updateUser(User user);
 
     /**
+     * 修改密码、重置密码、找回密码、忘记密码
+     * @param mobile
+     * @param password
+     * @return
+     */
+    Result updatePassword(String mobile,String password);
+
+    /**
      * 确定好友关系
      *
      * @param mobile1

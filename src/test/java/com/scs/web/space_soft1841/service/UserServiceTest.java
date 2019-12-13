@@ -1,17 +1,14 @@
 package com.scs.web.space_soft1841.service;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
-import com.scs.web.space_soft1841.until.AliOSSUtil;
 import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.until.Result;
-import com.scs.web.space_soft1841.until.ResultCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
-import java.io.File;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -47,8 +44,6 @@ class UserServiceTest {
     void updateUser() {
         User user = new User();
         user.setUserId(24);
-        user.setMobile("18932386185");
-        user.setPassword(Md5.MD5("222"));
         user.setNickname("测试");
         user.setEmail("1797262364@qq.com");
         user.setAvatar("测试");
@@ -97,6 +92,12 @@ class UserServiceTest {
     @Test
     void updateAvatarByUserId() {
         Result result = userService.updateAvatarByUserId("D:/testImg/1.png",2);
+        System.out.println(result);
+    }
+
+    @Test
+    void updateMobile() {
+        Result result = userService.updatePassword("13932330575","123");
         System.out.println(result);
     }
 }

@@ -138,6 +138,18 @@ public class UserController {
     }
 
     /**
+     * 修改密码、找回密码、重置密码、忘记密码
+     * @param mobile
+     * @param password
+     * @return
+     */
+    @PostMapping(value = "/update/password")
+    public Result updatePassword(@RequestParam String mobile,String password){
+        Result result = userService.updatePassword(mobile,password);
+        return result;
+    }
+
+    /**
      * 用户登录
      *
      * @param mobile

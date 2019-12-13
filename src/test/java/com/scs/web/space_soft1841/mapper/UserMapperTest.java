@@ -60,8 +60,6 @@ class UserMapperTest {
     void updateUserById() {
         User user = new User();
         user.setUserId(24);
-        user.setMobile("18932386185");
-        user.setPassword(Md5.MD5("111"));
         user.setNickname("测试");
         user.setEmail("测试");
         user.setAvatar("测试");
@@ -94,6 +92,15 @@ class UserMapperTest {
     @Test
     void updateAvatarByUserId() {
         String url = AliOSSUtil.avatarUpload(new File("D:/testImg/1.png"));
-        userMapper.updateAvatarByUserId(url,2);
+        userMapper.updateAvatarByUserId(url, 2);
     }
+
+    @Test
+    void updatePassword() {
+        String mobile = "13932330575";
+        String password = "991214";
+        userMapper.updatePassword(mobile, Md5.MD5(password));
+    }
+
+
 }

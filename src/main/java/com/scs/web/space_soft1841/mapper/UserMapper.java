@@ -69,9 +69,19 @@ public interface UserMapper {
      * @param user
      */
     @Update({"UPDATE t_user SET avatar=#{avatar},gender=#{gender},address=#{address}," +
-            "nickname=#{nickname},password=#{password},introduction=#{introduction},email=#{email}," +
-            "birthday=#{birthday},mobile=#{mobile} WHERE user_id=#{userId}"})
+            "nickname=#{nickname},introduction=#{introduction},email=#{email}," +
+            "birthday=#{birthday} WHERE user_id=#{userId}"})
     void updateUser(User user);
+
+    /**
+     * 修改密码、重置密码、找回密码、忘记密码
+     *
+     * @param mobile
+     * @param password
+     * @return int
+     */
+    @Update({"UPDATE t_user SET password=#{password} WHERE mobile=#{mobile}"})
+    int updatePassword(String mobile, String password);
 
     /**
      * 查询用户手机号 和密码 进行登录功能
@@ -94,6 +104,7 @@ public interface UserMapper {
 
     /**
      * 根据用户Id查询
+     *
      * @param userId
      * @return
      */
@@ -101,13 +112,15 @@ public interface UserMapper {
     List<User> selectUserAllById(Integer userId);
 
     /**
-     *更改用户头像，头像地址为本地图片上传到阿里云返回的的地址
+     * 更改用户头像，头像地址为本地图片上传到阿里云返回的的地址
+     *
      * @param avatar
      * @param userId
      * @return
      */
     @Update("UPDATE t_user SET avatar=#{avatar} WHERE user_id=#{userId}")
-    int updateAvatarByUserId(String avatar,int userId);
+    int updateAvatarByUserId(String avatar, int userId);
+
 
 
 }

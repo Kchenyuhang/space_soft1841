@@ -94,6 +94,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Result updatePassword(String mobile, String password) {
+        if (userMapper.updatePassword(mobile, Md5.MD5(password)) == 1) {
+            return Result.success();
+        } else {
+            return Result.failure(ResultCode.UPDATE_PASSWORD_FAILURE);
+        }
+
+    }
+
+    @Override
     public List<User> userLogin(String mobile, String password) {
         return userMapper.userLogin(mobile, Md5.MD5(password));
     }
