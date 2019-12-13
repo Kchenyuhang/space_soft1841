@@ -47,7 +47,7 @@ public interface LogMapper {
      */
     @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_log t1\n" +
             "LEFT JOIN t_user t2\n" +
-            "ON t1.user_id = t2.user_id WHERE t1.user_id = #{userId}")
+            "ON t1.user_id = t2.user_id WHERE t1.user_id = #{userId} ORDER BY log_createTime DESC")
     List<Map> selectByLogId(long userId);
 
     /**
@@ -91,7 +91,7 @@ public interface LogMapper {
      * @param logId
      * @return
      */
-    @Insert("INSERT INTO t_likes (user_id,log_id) VALUES (#{userId},#{logId})")
+    @Insert("INSERT INTO t_likes (user_id,log_id) VALUES (#{userId},#{logId}) ")
     int insertLogLike(int userId,long logId);
 
     /**
