@@ -24,6 +24,9 @@ public interface RelationShipMapper {
     @Select("SELECT * FROM t_relationship WHERE req_mobile = #{reqMobile} AND res_mobile = #{resMobile}")
     List<Relationship> confirmFriend(String reqMobile, String resMobile);
 
+
+    @Select("")
+
     /**
      * 发送好友请求
      * @param reqMobile

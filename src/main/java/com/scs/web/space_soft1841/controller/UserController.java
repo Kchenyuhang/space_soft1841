@@ -185,7 +185,7 @@ public class UserController {
                     user1.setBirthday(user.getBirthday());
                     user1.setHomepage(user.getHomepage());
                     user1.setCreateTime(user.getCreateTime());
-                    user1.setStatus(user.getStatus());
+                    user1.setCode(user.getCode());
                 }
                 return Result.success(user1);
             } else {
@@ -241,7 +241,7 @@ public class UserController {
                 user1.setBirthday(user.getBirthday());
                 user1.setHomepage(user.getHomepage());
                 user1.setCreateTime(user.getCreateTime());
-                user1.setStatus(user.getStatus());
+                user1.setCode(user.getCode());
             }
             return Result.success(user1);
         }

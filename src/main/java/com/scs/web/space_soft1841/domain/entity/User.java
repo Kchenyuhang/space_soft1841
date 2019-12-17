@@ -28,5 +28,5 @@ public class User {
     private Date birthday;
     private LocalDateTime createTime;
     private String homepage;
-    private Short status;
+    private Short code;
 }
