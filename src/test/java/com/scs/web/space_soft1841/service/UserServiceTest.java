@@ -90,12 +90,6 @@ class UserServiceTest {
     }
 
     @Test
-    void updateAvatarByUserId() {
-        Result result = userService.updateAvatarByUserId("D:/testImg/1.png",2);
-        System.out.println(result);
-    }
-
-    @Test
     void updateMobile() {
         Result result = userService.updatePassword("13932330575","123");
         System.out.println(result);

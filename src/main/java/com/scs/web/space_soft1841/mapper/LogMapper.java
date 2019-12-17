@@ -34,7 +34,7 @@ public interface LogMapper {
             @Result(property = "nickname",column = "nickname"),
             @Result(property = "avatar",column = "avatar")
     })
-    @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_log t1 " +
+    @Select("SELECT t1.*,t2.nickname,t2.avatar,t2.mobile FROM t_log t1 " +
             "LEFT JOIN t_user t2 " +
             "ON t1.user_id = t2.user_id ORDER BY log_createTime DESC LIMIT ${pageSize*(currentPage-1)},#{pageSize}")
     List<LogDto> selectByPage(int currentPage, int pageSize,int uerId);
@@ -45,7 +45,7 @@ public interface LogMapper {
      * @param userId
      * @return
      */
-    @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_log t1\n" +
+    @Select("SELECT t1.*,t2.nickname,t2.avatar,t2.mobile FROM t_log t1\n" +
             "LEFT JOIN t_user t2\n" +
             "ON t1.user_id = t2.user_id WHERE t1.user_id = #{userId} ORDER BY log_createTime DESC")
     List<Map> selectByLogId(long userId);

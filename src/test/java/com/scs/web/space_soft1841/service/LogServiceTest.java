@@ -32,7 +32,7 @@ class LogServiceTest {
 
     @Test
     void selectByLogId() {
-        Result result = logService.selectByLogId(2);
+        Result result = logService.selectByLogId(7);
         List<Map> maps = (List<Map>) result.getData();
         maps.forEach(log -> System.out.println(log));
     }
