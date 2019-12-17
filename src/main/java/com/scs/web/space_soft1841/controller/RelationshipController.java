@@ -33,6 +33,22 @@ public class RelationshipController {
         return result;
     }
 
+    @PostMapping(value = "/respone")
+    public Result responeFriend(@RequestParam String reqMobile) {
+        Result result = relationShipService.friendRequest(reqMobile);
+        return result;
+    }
+    /**
+     * 根据用户手机查询该用户所发送的所有好友请求（同意、拒绝和未处理）
+     * @param reqMobile
+     * @return
+     */
+    @PostMapping(value = "/select/request")
+    public Result selectMyRequest(@RequestParam String reqMobile){
+        Result result = relationShipService.selectMyRequest(reqMobile);
+        return result;
+    }
+
     @PostMapping(value = "/status")
     public Result updateStatue(@RequestParam String reqMobile,String resMobile){
         Result result = relationShipService.updateStatus(reqMobile, resMobile);
@@ -42,17 +58,6 @@ public class RelationshipController {
     @PostMapping(value = "/delete")
     public Result deleteRelationship(@RequestParam String reqMobile,String resMobile){
         Result result = relationShipService.deleteRelationship(reqMobile, resMobile);
-        return result;
-    }
-
-    /**
-     * 根据用户手机查询该用户所发送的所有好友请求（同意、拒绝和未处理）
-     * @param reqMobile
-     * @return
-     */
-    @PostMapping(value = "/select/request")
-    public Result selectMyRequest(@RequestParam String reqMobile){
-        Result result = relationShipService.selectMyRequest(reqMobile);
         return result;
     }
 }

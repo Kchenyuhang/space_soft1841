@@ -13,10 +13,9 @@ import com.scs.web.space_soft1841.until.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -67,6 +66,14 @@ public class RelationShipServiceImpl implements RelationShipService {
         return Result.failure(ResultCode.RELATIONSHIP_UPDATE_STATUS);
     }
 
+    @Override
+    public Result friendRequest(String reqMobile) {
+        List<Map> list = relationShipMapper.friendsRequest(reqMobile);
+        if (list.size() != 0) {
+            return Result.success(list);
+        }
+        return Result.failure(ResultCode.SELECT_FRIEND_RESPONCE);
+    }
     @Override
     public Result selectMyRequest(String reqMobile) {
         List<Relationship> relationshipList;
