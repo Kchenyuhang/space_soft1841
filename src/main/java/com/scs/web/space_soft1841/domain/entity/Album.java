@@ -12,5 +12,5 @@ import lombok.Data;
 public class Album {
     private Long albumId;
     private String albumName;
-    private String albumUrl;
+    private String albumCover;
 }

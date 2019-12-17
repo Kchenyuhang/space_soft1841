@@ -82,6 +82,8 @@ public enum ResultCode {
     LOG_INSERT_ERROR(80003,"日志喜欢增加出错，已喜欢"),
     LOG_DELETE_FAILURE(80004,"日志删除失败"),
 
+    PHOTO_SELECT_ALBUM(80004,"相册查询操作失败"),
+
     /* 文件上传错误 */
     FILE_NOT_EXIST(90001,"文件未找到");
 
