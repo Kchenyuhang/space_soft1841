@@ -35,4 +35,10 @@ class RelationShipMapperTest {
     void requestFriend() {
         System.out.println(relationShipMapper.requestFriend("18932386185","18851697959"));
     }
+
+    @Test
+    void selectMyRequest() {
+        String reqMobile = "13937241160";
+        System.out.println(relationShipMapper.selectMyRequest(reqMobile));
+    }
 }

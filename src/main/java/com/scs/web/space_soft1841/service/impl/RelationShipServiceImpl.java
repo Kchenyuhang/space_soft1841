@@ -68,6 +68,17 @@ public class RelationShipServiceImpl implements RelationShipService {
     }
 
     @Override
+    public Result selectMyRequest(String reqMobile) {
+        List<Relationship> relationshipList;
+        relationshipList = relationShipMapper.selectMyRequest(reqMobile);
+        if (relationShipMapper.selectMyRequest(reqMobile).size() != 0) {
+            return Result.success(relationshipList);
+        } else {
+            return Result.failure(ResultCode.SELECT_REQUEST_FRIEND_FAILURE);
+        }
+    }
+
+    @Override
     public Result deleteRelationship(String reqMobile, String resMobile) {
         if (relationShipMapper.deleteRelationship(reqMobile, resMobile) == 1) {
             return Result.success();

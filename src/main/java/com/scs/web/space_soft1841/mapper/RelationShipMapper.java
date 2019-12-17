@@ -51,4 +51,14 @@ public interface RelationShipMapper {
     @Delete("DELETE FROM  t_relationship WHERE req_mobile=#{reqMobile} AND res_mobile=#{resMobile}")
     int deleteRelationship(String reqMobile,String resMobile);
 
+    /**
+     * 根据用户手机查询所有该用户发送的好友请求（同意、拒绝和未处理）
+     * @param reqMobile
+     * @return
+     */
+    @Select("SELECT t1.*,t2.mobile,t2.avatar,t2.nickname FROM t_relationship t1\n" +
+            "LEFT JOIN t_user t2\n" +
+            "ON t1.res_mobile = t2.mobile WHERE t1.req_mobile = #{reqMobile} ORDER BY status ASC")
+    List<Relationship> selectMyRequest(String reqMobile);
+
 }
