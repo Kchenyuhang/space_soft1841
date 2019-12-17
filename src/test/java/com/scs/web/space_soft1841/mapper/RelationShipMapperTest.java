@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class RelationShipMapperTest {
@@ -34,5 +34,11 @@ class RelationShipMapperTest {
     @Test
     void requestFriend() {
         System.out.println(relationShipMapper.requestFriend("18932386185","18851697959"));
+    }
+
+    @Test
+    void friendsRequest() {
+        List<Map> list = relationShipMapper.friendsRequest("13937241160");
+        System.out.println(list);
     }
 }

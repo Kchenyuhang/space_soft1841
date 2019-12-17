@@ -36,4 +36,10 @@ class RelationShipServiceTest {
         Result result = relationShipService.requestFriend("13776877867","18032386185");
         System.out.println(result);
     }
+
+    @Test
+    void friendRequest() {
+        Result result = relationShipService.friendRequest("13937241160");
+        System.out.println(result);
+    }
 }

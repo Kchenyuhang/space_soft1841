@@ -33,6 +33,12 @@ public class RelationshipController {
         return result;
     }
 
+    @PostMapping(value = "/respone")
+    public Result responeFriend(@RequestParam String resMobile) {
+        Result result = relationShipService.friendRequest(resMobile);
+        return result;
+    }
+
     @PostMapping(value = "/status")
     public Result updateStatue(@RequestParam String reqMobile,String resMobile){
         Result result = relationShipService.updateStatus(reqMobile, resMobile);

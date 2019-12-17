@@ -45,4 +45,11 @@ public interface RelationShipService {
      */
     Result updateStatus(String reqMobile,String resMobile);
 
+    /**
+     * 我的请求消息，根据状态升序排列
+     * @param resMobile
+     * @return
+     */
+    Result friendRequest(String resMobile);
+
 }
