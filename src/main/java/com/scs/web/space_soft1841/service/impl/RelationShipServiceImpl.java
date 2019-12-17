@@ -67,8 +67,8 @@ public class RelationShipServiceImpl implements RelationShipService {
     }
 
     @Override
-    public Result friendRequest(String resMobile) {
-        List<Map> list = relationShipMapper.friendsRequest(resMobile);
+    public Result friendRequest(String reqMobile) {
+        List<Map> list = relationShipMapper.friendsRequest(reqMobile);
         if (list.size() != 0) {
             return Result.success(list);
         }

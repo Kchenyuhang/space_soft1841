@@ -33,9 +33,9 @@ public class RelationshipController {
         return result;
     }
 
-    @PostMapping(value = "/select/respone")
-    public Result responeFriend(@RequestParam String resMobile) {
-        Result result = relationShipService.friendRequest(resMobile);
+    @PostMapping(value = "/respone")
+    public Result responeFriend(@RequestParam String reqMobile) {
+        Result result = relationShipService.friendRequest(reqMobile);
         return result;
     }
     /**

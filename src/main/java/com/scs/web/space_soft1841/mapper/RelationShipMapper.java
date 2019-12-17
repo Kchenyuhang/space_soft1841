@@ -54,14 +54,13 @@ public interface RelationShipMapper {
 
     /**
      * 我的请求信息，根据状态来升序排列
-     * @param resMobile
+     * @param reqMobile
      * @return
      */
-    @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_relationship t1\n" +
+    @Select("SELECT t1.id,t1.req_mobile,t1.status,t2.mobile,t2.avatar,t2.nickname FROM t_relationship t1\n" +
             "            LEFT JOIN t_user t2\n" +
-            "             ON t1.req_mobile = t2.mobile\n" +
-            "             WHERE res_mobile=#{#resMobile} ORDER BY status ASC")
-    List<Map> friendsRequest(String resMobile);
+            "            ON t1.res_mobile = t2.mobile WHERE t1.req_mobile = #{reqMobile} ORDER BY status ASC")
+    List<Map> friendsRequest(String reqMobile);
 
     /**
      * 根据用户手机查询所有该用户发送的好友请求（同意、拒绝和未处理）
