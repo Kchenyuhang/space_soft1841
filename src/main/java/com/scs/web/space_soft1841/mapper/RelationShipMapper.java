@@ -3,8 +3,9 @@ package com.scs.web.space_soft1841.mapper;
 import com.scs.web.space_soft1841.domain.entity.Relationship;
 import org.apache.ibatis.annotations.*;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.*;
 
 /**
@@ -52,6 +53,17 @@ public interface RelationShipMapper {
     int deleteRelationship(String reqMobile,String resMobile);
 
     /**
+     * 我的请求信息，根据状态来升序排列
+     * @param resMobile
+     * @return
+     */
+    @Select("SELECT t1.*,t2.nickname,t2.avatar FROM t_relationship t1\n" +
+            "            LEFT JOIN t_user t2\n" +
+            "             ON t1.req_mobile = t2.mobile\n" +
+            "             WHERE res_mobile=#{#resMobile} ORDER BY status ASC")
+    List<Map> friendsRequest(String resMobile);
+
+    /**
      * 根据用户手机查询所有该用户发送的好友请求（同意、拒绝和未处理）
      * @param reqMobile
      * @return
@@ -60,5 +72,6 @@ public interface RelationShipMapper {
             "LEFT JOIN t_user t2\n" +
             "ON t1.res_mobile = t2.mobile WHERE t1.req_mobile = #{reqMobile} ORDER BY status ASC")
     List<Relationship> selectMyRequest(String reqMobile);
+
 
 }
