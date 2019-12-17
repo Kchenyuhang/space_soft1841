@@ -46,10 +46,9 @@ public interface RelationShipService {
     Result updateStatus(String reqMobile,String resMobile);
 
     /**
-     * 我的请求消息，根据状态升序排列
-     * @param resMobile
+     * 根据用户手机查询该用户发送所有的好友请求（同意、拒绝和未处理）
+     * @param reqMobile
      * @return
      */
-    Result friendRequest(String resMobile);
-
+    Result selectMyRequest(String reqMobile);
 }

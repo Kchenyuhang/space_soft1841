@@ -50,6 +50,7 @@ public enum ResultCode {
     REQUEST_FRIEND_FAILURE(20024,"发送好友请求失败"),
     UPDATE_PASSWORD_FAILURE(20025,"修改密码失败"),
     UPDATE_MOBILE_FAILURE(20026,"修改手机号失败"),
+    SELECT_REQUEST_FRIEND_FAILURE(20027,"查询发送的好友请求失败"),
 
 
 

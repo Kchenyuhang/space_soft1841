@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -69,12 +68,14 @@ public class RelationShipServiceImpl implements RelationShipService {
     }
 
     @Override
-    public Result friendRequest(String resMobile) {
-        List<Map> list = relationShipMapper.friendsRequest(resMobile);
-        if (list.size()!=0){
-            return Result.success(list);
+    public Result selectMyRequest(String reqMobile) {
+        List<Relationship> relationshipList;
+        relationshipList = relationShipMapper.selectMyRequest(reqMobile);
+        if (relationShipMapper.selectMyRequest(reqMobile).size() != 0) {
+            return Result.success(relationshipList);
+        } else {
+            return Result.failure(ResultCode.SELECT_REQUEST_FRIEND_FAILURE);
         }
-        return Result.failure(ResultCode.SELECT_FRIEND_RESPONCE);
     }
 
     @Override

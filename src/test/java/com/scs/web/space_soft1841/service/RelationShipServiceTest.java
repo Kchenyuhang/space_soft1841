@@ -38,8 +38,8 @@ class RelationShipServiceTest {
     }
 
     @Test
-    void friendRequest() {
-        Result result = relationShipService.friendRequest("13937241160");
+    void selectMyRequest() {
+        Result result = relationShipService.selectMyRequest("13937241160");
         System.out.println(result);
     }
 }

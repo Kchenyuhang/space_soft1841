@@ -50,4 +50,15 @@ public class RelationshipController {
         Result result = relationShipService.deleteRelationship(reqMobile, resMobile);
         return result;
     }
+
+    /**
+     * 根据用户手机查询该用户所发送的所有好友请求（同意、拒绝和未处理）
+     * @param reqMobile
+     * @return
+     */
+    @PostMapping(value = "/select/request")
+    public Result selectMyRequest(@RequestParam String reqMobile){
+        Result result = relationShipService.selectMyRequest(reqMobile);
+        return result;
+    }
 }
