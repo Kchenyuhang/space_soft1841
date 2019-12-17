@@ -53,6 +53,7 @@ public class LogServiceImpl implements LogService {
                 logDto.setLogName(maps.get(i).getLogName());
                 logDto.setNickname(maps.get(i).getNickname());
                 logDto.setLogId(maps.get(i).getLogId());
+                logDto.setMobile(maps.get(i).getMobile());
                 maps1.add(logDto);
             }
             return Result.success(maps1);

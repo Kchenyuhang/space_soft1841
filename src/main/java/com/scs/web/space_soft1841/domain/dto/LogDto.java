@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class LogDto {
     private Long logId;
     private Integer userId;
+    private String mobile;
     private String logName;
     private Integer logLike;
     private String logCover;
