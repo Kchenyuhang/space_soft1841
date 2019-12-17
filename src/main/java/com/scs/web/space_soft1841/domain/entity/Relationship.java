@@ -14,6 +14,7 @@ public class Relationship {
     private String reqMobile;
     private String resMobile;
     private Integer status;
+    private Integer userId;
     private String mobile;
     private String avatar;
     private String nickname;

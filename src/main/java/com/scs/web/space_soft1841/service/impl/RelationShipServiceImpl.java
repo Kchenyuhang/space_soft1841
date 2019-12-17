@@ -13,6 +13,7 @@ import com.scs.web.space_soft1841.until.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,7 @@ public class RelationShipServiceImpl implements RelationShipService {
         }
         return Result.failure(ResultCode.SELECT_FRIEND_RESPONCE);
     }
+
     @Override
     public Result selectMyRequest(String reqMobile) {
         List<Relationship> relationshipList;
@@ -84,6 +86,43 @@ public class RelationShipServiceImpl implements RelationShipService {
             return Result.failure(ResultCode.SELECT_REQUEST_FRIEND_FAILURE);
         }
     }
+
+    @Override
+    public Result selectFriend(String mobile) {
+        List<Relationship> relationshipList;
+        List<Relationship> relationshipList1;
+        List<RelationShipVO> list;
+        list = relationShipMapper.selectReqMobile(mobile);
+        if (list.size() !=0) {
+            relationshipList = relationShipMapper.selectReqFriend(mobile);
+            relationshipList1 = relationShipMapper.selectResFriend(mobile);
+            if (relationshipList1.size() != 0) {
+                relationshipList.addAll(relationshipList1);
+            }
+            if (relationShipMapper.selectReqFriend(mobile).size() != 0) {
+                return Result.success(relationshipList);
+            } else {
+                return Result.failure(ResultCode.SELECT_REQUEST_FRIEND_FAILURE);
+            }
+        } else {
+            list = relationShipMapper.selectResMobile(mobile);
+            if (list.size()!=0) {
+                relationshipList = relationShipMapper.selectResFriend(mobile);
+                relationshipList1 = relationShipMapper.selectReqFriend(mobile);
+                if (relationshipList1.size() != 0) {
+                    relationshipList.addAll(relationshipList1);
+                }
+                if (relationShipMapper.selectResFriend(mobile).size() !=0){
+                    return Result.success(relationshipList);
+                }else {
+                    return Result.failure(ResultCode.SELECT_REQUEST_FRIEND_FAILURE);
+                }
+            }else {
+                return Result.failure(ResultCode.SELECT_REQUEST_FRIEND_FAILURE);
+            }
+        }
+    }
+
 
     @Override
     public Result deleteRelationship(String reqMobile, String resMobile) {

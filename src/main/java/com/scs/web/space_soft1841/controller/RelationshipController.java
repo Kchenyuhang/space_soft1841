@@ -49,6 +49,17 @@ public class RelationshipController {
         return result;
     }
 
+    /**
+     * 根据用户mobile查询好友列表
+     * @param mobile
+     * @return
+     */
+    @PostMapping(value = "/select/friend")
+    public Result selectFriend(@RequestParam String mobile){
+        Result result = relationShipService.selectFriend(mobile);
+        return result;
+    }
+
     @PostMapping(value = "/status")
     public Result updateStatue(@RequestParam String reqMobile,String resMobile){
         Result result = relationShipService.updateStatus(reqMobile, resMobile);

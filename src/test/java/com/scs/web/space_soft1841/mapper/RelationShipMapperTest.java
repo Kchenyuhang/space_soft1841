@@ -1,14 +1,12 @@
 package com.scs.web.space_soft1841.mapper;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
-import com.scs.web.space_soft1841.domain.entity.Relationship;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class RelationShipMapperTest {
@@ -46,5 +44,29 @@ class RelationShipMapperTest {
     void friendsRequest() {
         String reqMobile ="13937241160";
         System.out.println(relationShipMapper.friendsRequest(reqMobile));
+    }
+
+    @Test
+    void selectResFriend() {
+        String resMobile = "13955615747";
+        System.out.println(relationShipMapper.selectResFriend(resMobile));
+    }
+
+    @Test
+    void selectReqFriend() {
+        String reqMobile = "13937241160";
+        System.out.println(relationShipMapper.selectReqFriend(reqMobile));
+    }
+
+    @Test
+    void selectReqMobile() {
+        String reqMobile = "18932386185";
+        System.out.println(relationShipMapper.selectReqMobile(reqMobile));
+    }
+
+    @Test
+    void selectResMobile() {
+        String resMobile = "18851697959";
+        System.out.println(relationShipMapper.selectResMobile(resMobile));
     }
 }

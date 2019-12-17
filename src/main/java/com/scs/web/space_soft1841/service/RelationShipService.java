@@ -51,10 +51,18 @@ public interface RelationShipService {
      * @return
      */
     Result friendRequest(String reqMobile);
+
     /**
      * 根据用户手机查询该用户发送所有的好友请求（同意、拒绝和未处理）
      * @param reqMobile
      * @return
      */
     Result selectMyRequest(String reqMobile);
+
+    /**
+     * 先判断mobile为req还是res，在进行查询
+     * @param mobile
+     * @return
+     */
+    Result selectFriend(String mobile);
 }
