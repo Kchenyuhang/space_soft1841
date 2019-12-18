@@ -103,4 +103,13 @@ public interface LogMapper {
      */
     @Delete("DELETE FROM t_log WHERE log_id = #{logId} AND user_id = #{userId}")
     int deleteLog(long logId, int userId);
+
+    /**
+     * 新增日志
+     * @param log
+     * @return
+     */
+    @Insert("INSERT INTO t_log (user_id,log_name,log_cover,log_content,log_createTime)"+
+            " VALUES (#{userId},#{logName},#{logCover},#{logContent},#{logCreateTime}) ")
+    int insertLog(Log log);
 }

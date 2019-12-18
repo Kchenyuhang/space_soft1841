@@ -6,8 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
-
-
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class RelationShipMapperTest {
     @Resource

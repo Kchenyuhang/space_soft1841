@@ -2,6 +2,7 @@ package com.scs.web.space_soft1841.service.impl;
 
 import com.scs.web.space_soft1841.domain.dto.LogDto;
 import com.scs.web.space_soft1841.domain.entity.Log;
+import com.scs.web.space_soft1841.domain.entity.User;
 import com.scs.web.space_soft1841.mapper.LogMapper;
 import com.scs.web.space_soft1841.service.LogService;
 import com.scs.web.space_soft1841.until.Result;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -146,5 +148,20 @@ public class LogServiceImpl implements LogService {
             return Result.success();
         }
         return Result.failure(ResultCode.LOG_DELETE_FAILURE);
+    }
+
+    @Override
+    public Result insertLog(Log log) {
+        log.setUserId(log.getUserId());
+        log.setLogName(log.getLogName());
+        log.setLogCover(log.getLogCover());
+        log.setLogContent(log.getLogContent());
+        log.setLogCreateTime(LocalDateTime.now());
+        int n = logMapper.insertLog(log);
+        if (n == 1) {
+            return Result.success();
+        } else {
+            return Result.failure(ResultCode.LOG_INSERT_FAILURE);
+        }
     }
 }

@@ -73,7 +73,7 @@ public class RelationShipServiceImpl implements RelationShipService {
         if (list.size() != 0) {
             return Result.success(list);
         }
-        return Result.failure(ResultCode.SELECT_FRIEND_RESPONCE);
+        return Result.failure(ResultCode.SELECT_FRIEND_RESPONSE);
     }
 
     @Override

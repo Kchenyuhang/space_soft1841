@@ -1,6 +1,7 @@
 package com.scs.web.space_soft1841.controller;
 
 import com.scs.web.space_soft1841.domain.Page;
+import com.scs.web.space_soft1841.domain.entity.Log;
 import com.scs.web.space_soft1841.service.LogService;
 import com.scs.web.space_soft1841.service.UserService;
 import com.scs.web.space_soft1841.until.Result;
@@ -66,6 +67,17 @@ public class LogController {
     @PostMapping(value = "/delete")
     public Result deleteLog(@RequestParam long logId,int userId){
         Result result = logService.deleteLog(logId,userId);
+        return result;
+    }
+
+    /**
+     * 新增日志
+     * @param log
+     * @return
+     */
+    @PostMapping(value = "/insertLog")
+    public Result insertLog(@RequestBody Log log){
+        Result result = logService.insertLog(log);
         return result;
     }
 }

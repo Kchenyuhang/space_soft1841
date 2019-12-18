@@ -2,6 +2,7 @@ package com.scs.web.space_soft1841.service;
 
 import com.scs.web.space_soft1841.SpaceSoft1841Application;
 import com.scs.web.space_soft1841.domain.dto.LogDto;
+import com.scs.web.space_soft1841.domain.entity.Log;
 import com.scs.web.space_soft1841.mapper.LogMapper;
 import com.scs.web.space_soft1841.until.Result;
 import org.junit.jupiter.api.Test;
@@ -71,5 +72,16 @@ class LogServiceTest {
     @Test
     void deleteLog() {
         System.out.println(logService.deleteLog(26,2));
+    }
+
+    @Test
+    void insertLog() {
+        Log log = new Log();
+        log.setUserId(3);
+        log.setLogName("最终测试");
+        log.setLogCover("https://soft1841sapce.oss-cn-beijing.aliyuncs.com/images%20%2815%29.jpg");
+        log.setLogContent("最终测试内容");
+        Result result = logService.insertLog(log);
+        System.out.println(result);
     }
 }

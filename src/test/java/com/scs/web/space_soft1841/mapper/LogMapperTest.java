@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -54,4 +55,15 @@ class LogMapperTest {
         System.out.println(logMapper.deleteLog(6, 5));
     }
 
+    @Test
+    void insertLog() {
+        Log log = new Log();
+        log.setUserId(7);
+        log.setLogName("新增日志");
+        log.setLogCover("https://soft1841sapce.oss-cn-beijing.aliyuncs.com/images%20%2815%29.jpg");
+        log.setLogContent("测试内容");
+        log.setLogCreateTime(LocalDateTime.now());
+        int a = logMapper.insertLog(log);
+        System.out.println(a);
+    }
 }

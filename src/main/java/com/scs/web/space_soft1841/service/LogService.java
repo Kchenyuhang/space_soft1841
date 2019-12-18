@@ -1,5 +1,6 @@
 package com.scs.web.space_soft1841.service;
 
+import com.scs.web.space_soft1841.domain.entity.Log;
 import com.scs.web.space_soft1841.until.Result;
 
 import java.sql.SQLException;
@@ -73,4 +74,11 @@ public interface LogService {
      * @return
      */
     Result deleteLog(long logId,int userId);
+
+    /**
+     * 新增日志
+     * @param log
+     * @return
+     */
+    Result insertLog(Log log);
 }

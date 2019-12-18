@@ -84,7 +84,8 @@ public enum ResultCode {
     LOG_DELETE_FAILURE(80004,"日志删除失败"),
 
     PHOTO_SELECT_ALBUM(80005,"相册查询操作失败"),
-    SELECT_FRIEND_RESPONCE(80005,"未收到好友请求信息"),
+    SELECT_FRIEND_RESPONSE(80005,"未收到好友请求信息"),
+    LOG_INSERT_FAILURE(80006,"新增日志失败"),
 
     /* 文件上传错误 */
     FILE_NOT_EXIST(90001,"文件未找到");

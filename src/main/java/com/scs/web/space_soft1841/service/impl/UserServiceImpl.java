@@ -127,8 +127,25 @@ public class UserServiceImpl implements UserService {
     public Result updateAvatarByUserId(MultipartFile file, int userId) {
         String url = (String) AliOSSUtil.upload(file).getData();
         int n = userMapper.updateAvatarByUserId(url,userId);
+        List<User> list =userMapper.selectUserAllById(userId);
         User user = new User();
-        user.setAvatar(url);
+        if (list.size()>0){
+            user.setCreateTime(list.get(0).getCreateTime());
+            user.setHomepage(list.get(0).getHomepage());
+            user.setEmail(list.get(0).getEmail());
+            user.setCode(list.get(0).getCode());
+            user.setBirthday(list.get(0).getBirthday());
+            user.setNickname(list.get(0).getAddress());
+            user.setAddress(list.get(0).getAddress());
+            user.setGender(list.get(0).getGender());
+            user.setIntroduction(list.get(0).getIntroduction());
+            user.setAvatar(url);
+            user.setPassword(list.get(0).getPassword());
+            user.setMobile(list.get(0).getMobile());
+            user.setUserId(list.get(0).getUserId());
+        }else {
+            user.setAvatar(url);
+        }
         if (n==1){
             return Result.success(user);
         }
