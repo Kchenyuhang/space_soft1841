@@ -30,4 +30,11 @@ public interface AlbumService {
      * @return
      */
     Result insertPhotosByAlbumId(MultipartFile[] files, int albumId);
+
+    /**
+     * 根据前台传过来的userId来 统计出该用户有多少相册和相册下相片的数量
+     * @param userId
+     * @return
+     */
+    Result countAlbum(long userId);
 }

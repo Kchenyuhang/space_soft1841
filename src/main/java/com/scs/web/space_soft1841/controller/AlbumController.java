@@ -35,4 +35,10 @@ public class AlbumController {
         Result result = albumService.selectPhoto(albumId);
         return result;
     }
+
+    @PostMapping(value = "/count")
+    public Result countAlbum(@RequestParam long userId){
+        Result result = albumService.countAlbum(userId);
+        return result;
+    }
 }

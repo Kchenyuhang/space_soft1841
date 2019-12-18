@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName PhotoMapper
@@ -42,4 +43,16 @@ public interface AlbumMapper {
      */
     @Insert("INSERT INTO t_photo(photo_name,photo_url,album_id) VALUES(#{name},#{url},#{albumId})")
     int insertPhotosByAlbumId(String name,String url,int albumId);
+
+    /**
+     * 根据前台的用户id 统计出改用户相册下面相片的数量
+     * @param userId
+     * @return
+     */
+    @Select("select t1.*, count(t2.album_id) as count from t_album t1 \n" +
+            "left join t_photo t2\n" +
+            "on t1.album_id = t2.album_id\n" +
+            "where t1.user_id=#{userId}\n" +
+            "group by t1.album_id")
+    List<Map> countAlbum(long userId);
 }

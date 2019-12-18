@@ -22,4 +22,9 @@ class PhotoServiceTest {
         Result result = albumService.selectPhoto(2);
         System.out.println(result);
     }
+    @Test
+    void  countAlbum(){
+        Result result =albumService.countAlbum(2);
+        System.out.println(result);
+    }
 }

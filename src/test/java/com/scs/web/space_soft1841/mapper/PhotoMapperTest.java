@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
 class PhotoMapperTest {
@@ -24,5 +25,10 @@ class PhotoMapperTest {
     void selectAlbum() {
         List<Album> list  = albumMapper.selectAlbum();
         list.forEach(album -> System.out.println(album));
+    }
+    @Test
+    void countAlbum(){
+        List<Map> list = albumMapper.countAlbum(2);
+        list.forEach(map -> System.out.println(map));
     }
 }
