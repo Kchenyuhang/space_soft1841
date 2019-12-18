@@ -21,10 +21,10 @@ public interface AlbumMapper {
      * @param albumId
      * @return
      */
-    @Select("SELECT t1.*,t2.album_name,t2.album_cover FROM t_photo t1\n" +
-            "    LEFT JOIN t_album t2\n" +
-            "    ON t1.album_id = t2.album_id\n" +
-            "\t\tWHERE t2.album_id =#{albumId}")
+    @Select("SELECT t1.* FROM t_photo t1\n" +
+            "LEFT JOIN t_album t2\n" +
+            "ON t1.album_id = t2.album_id\n" +
+            "WHERE t2.album_id=#{albumId}")
     List<PhotoDto> selectPhoto(long albumId);
 
     /**
@@ -55,4 +55,5 @@ public interface AlbumMapper {
             "where t1.user_id=#{userId}\n" +
             "group by t1.album_id")
     List<Map> countAlbum(long userId);
+
 }

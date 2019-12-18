@@ -19,7 +19,7 @@ class PhotoServiceTest {
 
     @Test
     void selectPhoto() {
-        Result result = albumService.selectPhoto(2);
+        Result result = albumService.selectPhoto(1);
         System.out.println(result);
     }
     @Test

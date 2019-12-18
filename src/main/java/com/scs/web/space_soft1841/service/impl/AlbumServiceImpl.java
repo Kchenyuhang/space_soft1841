@@ -51,17 +51,15 @@ public class AlbumServiceImpl implements AlbumService {
     public Result selectPhoto(long albumId) {
         List<PhotoDto> photoDtoList = albumMapper.selectPhoto(albumId);
         List<PhotoDto> list = new ArrayList<>();
-        PhotoDto photoDto1 = new PhotoDto();
         if (photoDtoList.size()!=0){
-            for (PhotoDto photoDto:photoDtoList){
-                photoDto1.setAlbumId(photoDto.getAlbumId());
-                photoDto1.setAlbumCover(photoDto.getAlbumCover());
-                photoDto1.setAlbumName(photoDto.getAlbumName());
-                photoDto1.setPhotoName(photoDto.getPhotoName());
-                photoDto1.setPhotoUrl(photoDto.getPhotoUrl());
-                photoDto1.setPhotoId(photoDto.getPhotoId());
+            for (int i=0;i<photoDtoList.size();i++){
+                PhotoDto photoDto1 = new PhotoDto();
+                photoDto1.setAlbumId(photoDtoList.get(i).getAlbumId());
+                photoDto1.setPhotoName(photoDtoList.get(i).getPhotoName());
+                photoDto1.setPhotoId(photoDtoList.get(i).getPhotoId());
+                photoDto1.setPhotoUrl(photoDtoList.get(i).getPhotoUrl());
+                list.add(photoDto1);
             }
-            list.add(photoDto1);
             return Result.success(list);
         }
         return Result.failure(ResultCode.PHOTO_SELECT_ALBUM);
