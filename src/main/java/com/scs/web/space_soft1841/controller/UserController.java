@@ -208,8 +208,19 @@ public class UserController {
             return Result.failure(ResultCode.USER_SELECT_FAILURE_);
         } else {
             for (User user : list1) {
+                user1.setUserId(user.getUserId());
+                user1.setMobile(user.getMobile());
+                user1.setPassword(user.getPassword());
                 user1.setNickname(user.getNickname());
+                user1.setIntroduction(user.getIntroduction());
+                user1.setEmail(user.getEmail());
                 user1.setAvatar(user.getAvatar());
+                user1.setAddress(user.getAddress());
+                user1.setGender(user.getGender());
+                user1.setBirthday(user.getBirthday());
+                user1.setHomepage(user.getHomepage());
+                user1.setCreateTime(user.getCreateTime());
+                user1.setCode(user.getCode());
             }
             return Result.success(user1);
         }

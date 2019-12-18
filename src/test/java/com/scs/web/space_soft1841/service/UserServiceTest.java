@@ -77,8 +77,7 @@ class UserServiceTest {
 
     @Test
     void findQueryMobile() {
-        List<User> list = new ArrayList<>();
-        list = userService.findQueryMobile("13921557438");
+        List<User> list = userService.findQueryMobile("13937241160");
         System.out.println(list);
     }
 

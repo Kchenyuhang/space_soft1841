@@ -8,6 +8,7 @@ import com.scs.web.space_soft1841.until.AliOSSUtil;
 import com.scs.web.space_soft1841.until.Md5;
 import com.scs.web.space_soft1841.until.Result;
 import com.scs.web.space_soft1841.until.ResultCode;
+import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -111,11 +112,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findQueryMobile(String mobile) {
-        List<User> list = new ArrayList<>();
+       List<User> list = new ArrayList<>();
         list = userMapper.findQueryMobile(mobile);
         return list;
-    }
-
+}
     @Override
     public List<User> selectUserAllById(Integer userId) {
         List<User> list = new ArrayList<>();

@@ -99,7 +99,7 @@ public interface UserMapper {
      * @param mobile
      * @return
      */
-    @Select("SELECT nickname,avatar FROM t_user WHERE mobile = #{mobile}")
+    @Select("SELECT * FROM t_user WHERE mobile = #{mobile}")
     List<User> findQueryMobile(String mobile);
 
     /**
