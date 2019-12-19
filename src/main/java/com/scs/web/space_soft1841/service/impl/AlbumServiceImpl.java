@@ -100,4 +100,12 @@ public class AlbumServiceImpl implements AlbumService {
     }
         return Result.failure(ResultCode.PHOTO_SELECT_ALBUM);
     }
+
+    @Override
+    public Result deletePhotoId(long photoId) {
+        if (albumMapper.deletePhotoId(photoId)==1){
+            return Result.success();
+        }
+        return Result.failure(ResultCode.PHOTO_SELECT_ALBUM);
+    }
 }

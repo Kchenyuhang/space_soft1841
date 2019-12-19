@@ -41,4 +41,10 @@ public class AlbumController {
         Result result = albumService.countAlbum(userId);
         return result;
     }
+
+    @PostMapping(value = "/delete")
+    public Result deletePhotoId(@RequestParam long photoId){
+        Result result = albumService.deletePhotoId(photoId);
+        return result;
+    }
 }

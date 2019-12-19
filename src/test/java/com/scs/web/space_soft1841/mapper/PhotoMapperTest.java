@@ -31,4 +31,8 @@ class PhotoMapperTest {
         List<Map> list = albumMapper.countAlbum(2);
         list.forEach(map -> System.out.println(map));
     }
+    @Test
+    void deletePhotoId(){
+        System.out.println(albumMapper.deletePhotoId(27));
+    }
 }

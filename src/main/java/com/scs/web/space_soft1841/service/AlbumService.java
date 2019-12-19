@@ -37,4 +37,11 @@ public interface AlbumService {
      * @return
      */
     Result countAlbum(long userId);
+
+    /**
+     * 根据photoId来删除相片
+     * @param photoId
+     * @return
+     */
+    Result deletePhotoId(long photoId);
 }

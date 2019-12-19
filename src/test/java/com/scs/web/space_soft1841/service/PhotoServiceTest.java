@@ -4,6 +4,7 @@ import com.scs.web.space_soft1841.SpaceSoft1841Application;
 import com.scs.web.space_soft1841.until.Result;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import sun.reflect.generics.tree.VoidDescriptor;
 
 import javax.annotation.Resource;
 
@@ -25,6 +26,11 @@ class PhotoServiceTest {
     @Test
     void  countAlbum(){
         Result result =albumService.countAlbum(2);
+        System.out.println(result);
+    }
+    @Test
+    void  deletePhotoId(){
+        Result result = albumService.deletePhotoId(27);
         System.out.println(result);
     }
 }

@@ -3,6 +3,7 @@ package com.scs.web.space_soft1841.mapper;
 import com.scs.web.space_soft1841.domain.dto.PhotoDto;
 import com.scs.web.space_soft1841.domain.entity.Album;
 import com.scs.web.space_soft1841.domain.entity.Photo;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -56,4 +57,11 @@ public interface AlbumMapper {
             "group by t1.album_id")
     List<Map> countAlbum(long userId);
 
+    /**
+     * 根据photoId来删除相册中的相片
+     * @param photoId
+     * @return
+     */
+    @Delete("DELETE FROM t_photo WHERE photo_id=#{photoId}")
+    int deletePhotoId(long photoId);
 }
