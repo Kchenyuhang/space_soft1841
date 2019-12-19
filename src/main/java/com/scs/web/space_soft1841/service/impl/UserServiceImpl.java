@@ -29,6 +29,8 @@ public class UserServiceImpl implements UserService {
     private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private UserService userService;
 
     @Override
     public Result register(User user) {
@@ -89,8 +91,63 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result updateUser(User user) {
-        userMapper.updateUser(user);
-        return Result.success();
+        int userId = user.getUserId();
+        User newUser = new User();
+        newUser.setUserId(userId);
+        List<User> list = userService.selectUserAllById(userId);
+        String newGender = user.getGender();
+        String newAddress = user.getAddress();
+        String newNickName = user.getNickname();
+        String newIntroduction = user.getIntroduction();
+        String newEmail = user.getEmail();
+        Date newBirthday = user.getBirthday();
+        if (list.size()>0){
+            String oldGender = list.get(0).getGender();
+            String oldAddress = list.get(0).getAddress();
+            String oldNickName = list.get(0).getNickname();
+            String oldIntroduction = list.get(0).getIntroduction();
+            String oldEmail = list.get(0).getEmail();
+            Date oldBirthday = list.get(0).getBirthday();
+            if (newAddress!=null&&!newAddress.equals("")){
+                newUser.setAddress(newAddress);
+            }else {
+                newUser.setAddress(oldAddress);
+            }
+            if (newGender!=null&&!newGender.equals("")){
+                newUser.setGender(newGender);
+            }else {
+                newUser.setGender(oldGender);
+            }
+            if (newNickName!=null&&!newNickName.equals("")){
+                newUser.setNickname(newNickName);
+            }else {
+                newUser.setNickname(oldNickName);
+            }
+            if (newIntroduction!=null&&!newIntroduction.equals("")){
+                newUser.setIntroduction(newIntroduction);
+            }else {
+                newUser.setIntroduction(oldIntroduction);
+            }
+            if (newEmail!=null&&!newEmail.equals("")){
+                newUser.setEmail(newEmail);
+            }else {
+                newUser.setEmail(oldEmail);
+            }
+            if (newBirthday!=null&&!newBirthday.equals("")){
+                newUser.setBirthday(newBirthday);
+            }else {
+                newUser.setBirthday(oldBirthday);
+            }
+            newUser.setAvatar(list.get(0).getAvatar());
+            newUser.setMobile(list.get(0).getMobile());
+            newUser.setPassword(list.get(0).getPassword());
+            newUser.setCreateTime(list.get(0).getCreateTime());
+            newUser.setHomepage(list.get(0).getHomepage());
+            newUser.setCode(list.get(0).getCode());
+            userMapper.updateUser(newUser);
+            return Result.success(newUser);
+        }
+        return Result.failure(ResultCode.USER_NOT_EXIST);
     }
 
     @Override
