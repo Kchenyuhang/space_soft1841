@@ -44,4 +44,12 @@ public interface AlbumService {
      * @return
      */
     Result deletePhotoId(long photoId);
+
+    /**
+     * 用户新建相册
+     * @param userId
+     * @param albumName
+     * @return
+     */
+    Result insertAlbumByUserId(long userId,String albumName);
 }

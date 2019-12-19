@@ -8,13 +8,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 /**
- * @ClassName PhotoController
+ * @ClassName AlbumController
  * @Description TODO
  * @Author yj_hou
  * @Date 2019/12/17
  **/
 @RestController
-@RequestMapping(value = "/api/photo")
+@RequestMapping(value = "/api/album")
 public class AlbumController {
     @Resource
     private AlbumService albumService;
@@ -46,5 +46,10 @@ public class AlbumController {
     public Result deletePhotoId(@RequestParam long photoId){
         Result result = albumService.deletePhotoId(photoId);
         return result;
+    }
+
+    @PostMapping(value = "/insert")
+    public Result insertAlbum(@RequestParam long userId,String albumName){
+        return albumService.insertAlbumByUserId(userId,albumName);
     }
 }

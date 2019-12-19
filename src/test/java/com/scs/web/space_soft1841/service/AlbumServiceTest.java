@@ -9,7 +9,7 @@ import sun.reflect.generics.tree.VoidDescriptor;
 import javax.annotation.Resource;
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
-class PhotoServiceTest {
+class AlbumServiceTest {
     @Resource
     private AlbumService albumService;
     @Test
@@ -31,6 +31,12 @@ class PhotoServiceTest {
     @Test
     void  deletePhotoId(){
         Result result = albumService.deletePhotoId(27);
+        System.out.println(result);
+    }
+
+    @Test
+    void insertAlbumByUserId() {
+        Result result = albumService.insertAlbumByUserId(4,"新增测试3");
         System.out.println(result);
     }
 }

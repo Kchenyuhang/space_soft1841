@@ -64,4 +64,13 @@ public interface AlbumMapper {
      */
     @Delete("DELETE FROM t_photo WHERE photo_id=#{photoId}")
     int deletePhotoId(long photoId);
+
+    /**
+     * 用户新建相册
+     * @param userId
+     * @param albumName
+     * @return
+     */
+    @Insert("INSERT INTO t_album(user_id,album_name) VALUES(#{userId},#{albumName})")
+    int insertAlbumByUserId(long userId,String albumName);
 }

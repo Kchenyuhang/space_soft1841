@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootTest(classes = SpaceSoft1841Application.class)
-class PhotoMapperTest {
+class AlbumMapperTest {
     @Resource
     private AlbumMapper albumMapper;
     @Test
@@ -34,5 +34,10 @@ class PhotoMapperTest {
     @Test
     void deletePhotoId(){
         System.out.println(albumMapper.deletePhotoId(27));
+    }
+
+    @Test
+    void insertAlbumByUserId() {
+        System.out.println(albumMapper.insertAlbumByUserId(2,"新增测试"));
     }
 }

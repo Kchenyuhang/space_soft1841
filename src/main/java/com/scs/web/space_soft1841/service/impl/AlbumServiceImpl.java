@@ -108,4 +108,17 @@ public class AlbumServiceImpl implements AlbumService {
         }
         return Result.failure(ResultCode.PHOTO_SELECT_ALBUM);
     }
+
+    @Override
+    public Result insertAlbumByUserId(long userId,String albumName) {
+        int n = albumMapper.insertAlbumByUserId(userId,albumName);
+        Album album = new Album();
+        if (n==1){
+            album.setUserId(userId);
+            album.setAlbumName(albumName);
+            return Result.success(album);
+        }else{
+            return Result.failure(ResultCode.PHOTO_SELECT_ALBUM);
+        }
+    }
 }

@@ -68,7 +68,7 @@ public interface UserMapper {
      *
      * @param user
      */
-    @Update({"UPDATE t_user SET avatar=#{avatar},gender=#{gender},address=#{address}," +
+    @Update({"UPDATE t_user SET gender=#{gender},address=#{address}," +
             "nickname=#{nickname},introduction=#{introduction},email=#{email}," +
             "birthday=#{birthday} WHERE user_id=#{userId}"})
     void updateUser(User user);
@@ -120,7 +120,5 @@ public interface UserMapper {
      */
     @Update("UPDATE t_user SET avatar=#{avatar} WHERE user_id=#{userId}")
     int updateAvatarByUserId(String avatar, int userId);
-
-
 
 }
