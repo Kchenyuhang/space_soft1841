@@ -18,8 +18,8 @@ import java.util.UUID;
  */
 public class AliOSSUtil {
     static final String endpoint = "https://oss-cn-hangzhou.aliyuncs.com";
-    static final String accessKeyId = "LTAI41PGLwQKBcVF";
-    static final String accessKeySecret = "DBUGgiRLZqycwd6i4I5XfmeI47IpcB";
+    static final String accessKeyId = "LTA***********VF";
+    static final String accessKeySecret = "DBUG************7IpcB";
     static final String bucketName = "student-manage99";
     static String fileName = "";
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
